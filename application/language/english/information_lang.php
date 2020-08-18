@@ -11,6 +11,9 @@ $lang['menu_privilege'] = 'Privilege User';
 $lang['menu_sample_detail'] = 'Sample Detail';
 $lang['menu_history'] = 'Sample History';
 
+$lang['dashboard'] = 'Dashboard';
+$lang['home'] = 'Home';
+
 // button
 $lang['btn_show'] = 'Show';
 $lang['btn_save'] = 'Save';

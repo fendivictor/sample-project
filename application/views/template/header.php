@@ -13,7 +13,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Dashboard <?= ($current_menu <> '') ? ' : '.lang($current_menu) : ' : '.$title; ?></title>
+    <title><?= lang('dashboard'); ?> <?= ($current_menu <> '') ? ' : '.lang($current_menu) : ' : '.$title; ?></title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="http://10.7.10.12:90/dasboard/favicon.ico">

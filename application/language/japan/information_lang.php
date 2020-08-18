@@ -11,6 +11,9 @@ $lang['menu_privilege'] = '特権ユーザー';
 $lang['menu_sample_detail'] = 'Sample Detail';
 $lang['menu_history'] = 'Sample History';
 
+$lang['dashboard'] = '表示板';
+$lang['home'] = '自宅';
+
 // button
 $lang['btn_show'] = '表示';
 $lang['btn_save'] = '保存';
@@ -136,7 +139,7 @@ $lang['tahun'] = 'YEAR';
 $lang['finish-btn'] = 'FINISH BUTTON';
 $lang['finish'] = 'FINISH';
 
-$lang['sample-on-delivery'] = 'Sample On Delivery';
-$lang['sample-on-process'] = 'Sample On Process';
-$lang['sample-on-shipment'] = 'Sample On Shipment';
-$lang['sample-finish'] = 'Sample Finish';
+$lang['sample-on-delivery'] = 'サンプル（入荷）';
+$lang['sample-on-process'] = 'サンプル作っている';
+$lang['sample-on-shipment'] = 'サンプル（出荷）';
+$lang['sample-finish'] = 'サンプル完了';
