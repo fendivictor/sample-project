@@ -9,6 +9,7 @@ $lang['menu_change_password'] = 'Change Password';
 $lang['menu_management_user'] = 'Management User';
 $lang['menu_privilege'] = 'Privilege User';
 $lang['menu_sample_detail'] = 'Sample Detail';
+$lang['menu_history'] = 'Sample History';
 
 // button
 $lang['btn_show'] = 'Show';
@@ -61,7 +62,7 @@ $lang['form_note'] = 'Note';
 $lang['ajax_msg_save_fail'] = 'An error occurred while save the data';
 $lang['ajax_msg_update_fail'] = 'An error occurred while updating the data';
 $lang['ajax_msg_delete_fail'] = 'An error occurred whhile delete the data';
-$lang['ajax_msg_save_success'] = 'Successfully saved the data';
+$lang['ajax_msg_save_success'] = 'Successfully save the data';
 $lang['ajax_msg_update_success'] = 'Successfully updated the data';
 $lang['ajax_msg_delete_success'] = 'Successfully deleted the data';
 
@@ -120,14 +121,22 @@ $lang['retype_password'] = 'Confirm New Password';
 $lang['confirm_logout'] = 'Are you sure you want to log out?';
 
 $lang['confirm'] = 'Confirmation';
-$lang['confirm_save'] = 'Are you sure want to save the data ?';
+$lang['confirm_save'] = 'Are you sure want to save data ?';
+$lang['confirm_update'] = 'Are you sure want to update data ?';
 $lang['btn_yes'] = 'Yes, i am sure';
 $lang['btn_no'] = 'No';
 
 $lang['progress_sample'] = 'Sample Progress';
 $lang['selesai'] = 'Done';
-$lang['proses_pengiriman'] = 'On Delivery';
+$lang['proses_pengiriman'] = 'On Process';
 $lang['sample_delivery'] = 'Sample on Delivery';
 $lang['delivery_date'] = 'DELIVERY DATE';
 $lang['bulan'] = 'MONTH';
 $lang['tahun'] = 'YEAR';
+$lang['finish-btn'] = 'FINISH BUTTON';
+$lang['finish'] = 'FINISH';
+
+$lang['sample-on-delivery'] = 'Sample On Delivery';
+$lang['sample-on-process'] = 'Sample On Process';
+$lang['sample-on-shipment'] = 'Sample On Shipment';
+$lang['sample-finish'] = 'Sample Finish';

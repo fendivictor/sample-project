@@ -75,7 +75,8 @@
             success: {},
             confirmation: "<?= lang('confirm'); ?>",
             confirm: {
-                save: "<?= lang('confirm_save'); ?>"
+                save: "<?= lang('confirm_save'); ?>",
+                update: "<?= lang('confirm_update'); ?>"
             },
             btn: {
                 yes: "<?= lang('btn_yes') ?>",

@@ -1,26 +1,90 @@
 $(document).ready(function() {
-	$("#bulan").val(currentMonth);
-
-	var tbDelivery = $("#tb-delivery").DataTable({
-		processing: true,
-		ajax: {
-			url: baseUrl + 'ajax/Datatable/dt_delivery'
+	const type = ['delivery', 'process', 'shipment', 'finish'];
+	const config = {
+		datatable: {
+			delivery: baseUrl + 'ajax/Datatable/dashboard_list?type=sample-on-delivery',
+			process: baseUrl + 'ajax/Datatable/dashboard_list?type=sample-on-process',
+			shipment: baseUrl + 'ajax/Datatable/dashboard_list?type=sample-on-shipment',
+			finish: baseUrl + 'ajax/Datatable/dashboard_list?type=sample-finish'
 		},
-		pageLength: -1,
-		paging: false,
-		searching: false,
-		info: false,
-		columnDefs: [
-			{targets: 0, data: 'kontrak'},
-			{targets: 1, data: 'type'},
-			{targets: 2, data: 'delivery'}
-		]
+		counter: { 
+			url : {
+				delivery: baseUrl + 'ajax/Ajax/counter_dashboard?type=sample-on-delivery',
+				process: baseUrl + 'ajax/Ajax/counter_dashboard?type=sample-on-process',
+				shipment: baseUrl + 'ajax/Ajax/counter_dashboard?type=sample-on-shipment',
+				finish: baseUrl + 'ajax/Ajax/counter_dashboard?type=sample-finish'
+			},
+			el: {
+				delivery: 'counter-sample-on-delivery',
+				process: 'counter-sample-on-process',
+				shipment: 'counter-sample-on-shipment',
+				finish: 'counter-sample-finish'
+			}
+		}
+	}
+
+	for (i in type) {
+		let getCounter = $.get(config.counter.url[type[i]]);
+		let elTarget = config.counter.el[type[i]];
+
+		$.when(getCounter)
+			.done(function(data) {
+				let response = JSON.parse(data);
+
+				$(`#${elTarget}`).html(response.jumlah);
+			});
+	}
+
+	const columnDefinition = [
+		{targets: 0, data: 'no'},
+		{targets: 1, data: 'type'},
+		{targets: 2, data: 'brand'},
+		{targets: 3, data: 'kontrak'},
+		{targets: 4, data: 'item'},
+		{targets: 5, data: 'style'}
+	];
+
+	const dtDelivery = $("#tb-sample-on-delivery").DataTable({
+		processing: true,
+		serverSide: true,
+		order: [[0, 'desc']],
+		ajax: {
+			url: config.datatable.delivery,
+			type: 'post'
+		},
+		columnDefs: columnDefinition
 	});
 
-	$("#show-monthly").click(function() {
-		let bulan = $("#bulan").val();
-		let tahun = $("#tahun").val();
+	const dtProcess = $("#tb-sample-on-process").DataTable({
+		processing: true,
+		serverSide: true,
+		order: [[0, 'desc']],
+		ajax: {
+			url: config.datatable.process,
+			type: 'post'
+		},
+		columnDefs: columnDefinition
+	});
 
-		tbDelivery.ajax.url(baseUrl + 'ajax/Datatable/dt_delivery?bulan=' + bulan + '&tahun=' + tahun).load();
+	const dtShipment = $("#tb-sample-on-shipment").DataTable({
+		processing: true,
+		serverSide: true,
+		order: [[0, 'desc']],
+		ajax: {
+			url: config.datatable.shipment,
+			type: 'post'
+		},
+		columnDefs: columnDefinition
+	});
+
+	const dtFinish = $("#tb-sample-finish").DataTable({
+		processing: true,
+		serverSide: true,
+		order: [[0, 'desc']],
+		ajax: {
+			url: config.datatable.finish,
+			type: 'post'
+		},
+		columnDefs: columnDefinition
 	});
 });

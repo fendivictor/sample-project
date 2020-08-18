@@ -222,4 +222,38 @@ $(document).ready(function() {
 				console.log('Terjadi kesalahan saat memuat data');
 			});
 	});
+
+	$(document).on('click', '.btn-finish', function() {
+		let id = $(this).data('id');
+
+		Swal.fire({
+            title: msg.confirmation,
+            text: msg.confirm.update,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: msg.btn.yes,
+            cancelButtonText: msg.btn.no
+        }).then((result) => {
+            if (result.value) {
+                $.post(baseUrl + 'ajax/Ajax/finish', {'id': id})
+                	.done(function(response) {
+                		let data = JSON.parse(response);
+                		unBlockUI();
+
+                		if (data.status == 1) {
+                			table.ajax.reload(null, false);
+                			toastr.success(data.message);
+                		} else {
+                			toastr.error(data.message);
+                		}
+                	})
+                	.fail(function(error) {
+                		toastr.error(msg.fail.update);
+                		unBlockUI();
+                	});
+            }
+        });
+	});
 });

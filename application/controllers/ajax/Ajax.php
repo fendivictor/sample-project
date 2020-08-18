@@ -252,6 +252,40 @@ class Ajax extends CI_Controller {
 
 		echo json_encode($result);
 	}
+
+	public function finish()
+	{
+		$id = $this->input->post('id', TRUE);
+		$date = $this->Main_Model->get_time('%Y-%m-%d');
+		$now = $this->Main_Model->get_time('%Y-%m-%d %H:%i:%s');
+		$username = $this->session->userdata('username');
+
+		$update = $this->Main_Model->store_data('project_h', ['finish' => $date, 'update_at' => $now, 'user_update' => $username], ['id' => $id]);
+
+		$status = 0;
+		$message = lang('ajax_msg_save_fail');
+
+		if ($update) {
+			$status = 1;
+			$message = lang('ajax_msg_save_success');
+		}
+
+		$result = [
+			'status' => $status,
+			'message' => $message
+		];
+
+		echo json_encode($result);
+	}
+
+	public function counter_dashboard()
+	{
+		$type = $this->input->get('type', TRUE);
+
+		$jumlah = $this->Project_Model->dashboard_counter($type);
+
+		echo json_encode(['jumlah' => $jumlah]);
+	}
 }
 
 /* End of file Ajax.php */

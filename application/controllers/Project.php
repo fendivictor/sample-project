@@ -34,6 +34,28 @@ class Project extends MY_Controller {
 		$this->template($header, $body, $footer);
 	}
 
+	public function history()
+	{
+		$page = $this->Login_model->isvalid_page();
+		if ($page == false) {
+			show_404();
+		}
+		
+		$header = [];
+		$username = $this->session->userdata('username');
+
+		$body = [
+			'content' => 'project/history',
+			'title' => lang('menu_history')
+		];
+
+		$footer = [
+			'js' => ['assets/js/apps/project/history.js']
+		];
+
+		$this->template($header, $body, $footer);
+	}
+
 	public function add()
 	{
 		$page = $this->Login_model->isvalid_page();

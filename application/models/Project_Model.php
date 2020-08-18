@@ -162,7 +162,8 @@ class Project_Model extends CI_Model {
 			DATE_FORMAT(a.fg_actual, '%d/%m/%Y') AS format_fg_actual,
 			DATE_FORMAT(a.kirim_plan, '%d/%m/%Y') AS format_kirim_plan,
 			DATE_FORMAT(a.kirim_actual, '%d/%m/%Y') AS format_kirim_actual
-			FROM project_h a ";
+			FROM project_h a 
+			WHERE a.finish IS NULL";
 
 		$view = $this->db->query(" SELECT * FROM ( $sql ) AS tb WHERE 1 = 1 $condition $order $limit ")->result();
 		$count = $this->db->query(" SELECT COUNT(*) AS jumlah FROM ( $sql ) AS tb WHERE 1 = 1 $condition ")->row();
@@ -172,6 +173,11 @@ class Project_Model extends CI_Model {
 			$no = 1;
 			foreach ($view as $row) {
 				$btn_history = '<a href="javascript:;" class="btn btn-success btn-xs btn-history" data-id="'.$row->id.'"><i class="fa fa-history"></i></a>';
+
+				$btn_finish = '';
+				if (in_array('finish-btn', $arrPrivilege) && $row->format_fabric_plan != '' && $row->format_aksesories_plan != '' && $row->format_persiapan_actual != '' && $row->format_cad_actual != '' && $row->format_cutting_actual != '' && $row->format_sewing_actual != '' && $row->format_fg_actual != '' && $row->format_kirim_actual != '') {
+					$btn_finish = '<a href="javascript:;" class="btn btn-primary btn-xs btn-finish" data-id="'.$row->id.'"><i class="fa fa-check"></i></a>';
+				}
 
 				$btn_tec_sheet_plan = $row->format_tec_sheet_plan;
 				if (in_array('tec-sheet-plan-kirim', $arrPrivilege)) {
@@ -199,7 +205,7 @@ class Project_Model extends CI_Model {
 				}
 
 				$btn_fabric_actual = $row->format_fabric_actual;
-				if (in_array('fabric-kedatangan', $arrPrivilege)) {
+				if (in_array('fabric-kedatangan', $arrPrivilege) && $row->format_fabric_plan != '') {
 					$btn_fabric_actual = ($row->format_fabric_actual != '') ? '<a href="javascript:;" data-action="input-fabric-actual" data-id="'.$row->id.'" class="click-to-update">'.$row->format_fabric_actual.'</a>' : '<a href="javascript:;" data-action="input-fabric-actual" data-id="'.$row->id.'" class="click-to-update"><i>'.lang('btn_input').'</i></a>';
 				}
 
@@ -209,7 +215,7 @@ class Project_Model extends CI_Model {
 				}
 
 				$btn_aksesories_actual = $row->format_aksesories_actual;
-				if (in_array('aksesories-kedatangan', $arrPrivilege)) {
+				if (in_array('aksesories-kedatangan', $arrPrivilege) && $row->format_aksesories_plan != '') {
 					$btn_aksesories_actual = ($row->format_aksesories_actual != '') ? '<a href="javascript:;" data-action="input-aksesories-actual" data-id="'.$row->id.'" class="click-to-update">'.$row->format_aksesories_actual.'</a>' : '<a href="javascript:;" data-action="input-aksesories-actual" data-id="'.$row->id.'" class="click-to-update"><i>'.lang('btn_input').'</i></a>';
 				}
 
@@ -229,7 +235,7 @@ class Project_Model extends CI_Model {
 				}
 
 				$btn_persiapan_actual = $row->format_persiapan_actual;
-				if (in_array('persiapan-finish-actual', $arrPrivilege)) {
+				if (in_array('persiapan-finish-actual', $arrPrivilege) && $row->format_fabric_plan != '' && $row->format_aksesories_plan != '') {
 					$btn_persiapan_actual = ($row->format_persiapan_actual != '') ? '<a href="javascript:;" data-action="input-persiapan-actual" data-id="'.$row->id.'" class="click-to-update">'.$row->format_persiapan_actual.'</a>' : '<a href="javascript:;" data-action="input-persiapan-actual" data-id="'.$row->id.'" class="click-to-update"><i>'.lang('btn_input').'</i></a>';
 				}
 
@@ -239,7 +245,7 @@ class Project_Model extends CI_Model {
 				}
 
 				$btn_cutting_actual = $row->format_cutting_actual;
-				if (in_array('cutting-finish-actual', $arrPrivilege)) {
+				if (in_array('cutting-finish-actual', $arrPrivilege) && $row->format_fabric_plan != '' && $row->format_aksesories_plan != '' && $row->format_persiapan_actual != '' && $row->format_cad_actual != '') {
 					$btn_cutting_actual = ($row->format_cutting_actual != '') ? '<a href="javascript:;" data-action="input-cutting-actual" data-id="'.$row->id.'" class="click-to-update">'.$row->format_cutting_actual.'</a>' : '<a href="javascript:;" data-action="input-cutting-actual" data-id="'.$row->id.'" class="click-to-update"><i>'.lang('btn_input').'</i></a>';
 				}
 
@@ -249,7 +255,7 @@ class Project_Model extends CI_Model {
 				}
 
 				$btn_cad_actual = $row->format_cad_actual;
-				if (in_array('cad-finish-actual', $arrPrivilege)) {
+				if (in_array('cad-finish-actual', $arrPrivilege) && $row->format_fabric_plan != '' && $row->format_aksesories_plan != '' && $row->format_persiapan_actual != '') {
 					$btn_cad_actual = ($row->format_cad_actual != '') ? '<a href="javascript:;" data-action="input-cad-actual" data-id="'.$row->id.'" class="click-to-update">'.$row->format_cad_actual.'</a>' : '<a href="javascript:;" data-action="input-cad-actual" data-id="'.$row->id.'" class="click-to-update"><i>'.lang('btn_input').'</i></a>';
 				}
 
@@ -259,7 +265,7 @@ class Project_Model extends CI_Model {
 				}
 
 				$btn_sewing_actual = $row->format_sewing_actual;
-				if (in_array('sewing-finish-actual', $arrPrivilege)) {
+				if (in_array('sewing-finish-actual', $arrPrivilege) && $row->format_fabric_plan != '' && $row->format_aksesories_plan != '' && $row->format_persiapan_actual != '' && $row->format_cad_actual != '' && $row->format_cutting_actual != '') {
 					$btn_sewing_actual = ($row->format_sewing_actual != '') ? '<a href="javascript:;" data-action="input-sewing-actual" data-id="'.$row->id.'" class="click-to-update">'.$row->format_sewing_actual.'</a>' : '<a href="javascript:;" data-action="input-sewing-actual" data-id="'.$row->id.'" class="click-to-update"><i>'.lang('btn_input').'</i></a>';
 				}
 
@@ -269,7 +275,7 @@ class Project_Model extends CI_Model {
 				}
 
 				$btn_fg_actual = $row->format_fg_actual;
-				if (in_array('finish-goods-actual', $arrPrivilege)) {
+				if (in_array('finish-goods-actual', $arrPrivilege) && $row->format_fabric_plan != '' && $row->format_aksesories_plan != '' && $row->format_persiapan_actual != '' && $row->format_cad_actual != '' && $row->format_cutting_actual != '' && $row->format_sewing_actual != '') {
 					$btn_fg_actual = ($row->format_fg_actual != '') ? '<a href="javascript:;" data-action="input-fg-actual" data-id="'.$row->id.'" class="click-to-update">'.$row->format_fg_actual.'</a>' : '<a href="javascript:;" data-action="input-fg-actual" data-id="'.$row->id.'" class="click-to-update"><i>'.lang('btn_input').'</i></a>';
 				}
 
@@ -279,7 +285,7 @@ class Project_Model extends CI_Model {
 				}
 
 				$btn_kirim_actual = $row->format_kirim_actual;
-				if (in_array('kirim-actual', $arrPrivilege)) {
+				if (in_array('kirim-actual', $arrPrivilege) && $row->format_fabric_plan != '' && $row->format_aksesories_plan != '' && $row->format_persiapan_actual != '' && $row->format_cad_actual != '' && $row->format_cutting_actual != '' && $row->format_sewing_actual != '' && $row->format_fg_actual != '') {
 					$btn_kirim_actual = ($row->format_kirim_actual != '') ? '<a href="javascript:;" data-action="input-kirim-actual" data-id="'.$row->id.'" class="click-to-update">'.$row->format_kirim_actual.'</a>' : '<a href="javascript:;" data-action="input-kirim-actual" data-id="'.$row->id.'" class="click-to-update"><i>'.lang('btn_input').'</i></a>';
 				}
 
@@ -289,7 +295,7 @@ class Project_Model extends CI_Model {
 				}
 
 				$data[] = [
-					'no' => $no++,
+					'no' => $row->id,
 					'type' => $row->type,
 					'brand' => $row->brand,
 					'kontrak' => $row->kontrak,
@@ -325,7 +331,7 @@ class Project_Model extends CI_Model {
 					'kirim_plan' => $btn_kirim_plan,
 					'kirim_actual' => $btn_kirim_actual,
 					'keterangan' => $btn_keterangan,
-					'tools' => $btn_history
+					'tools' => $btn_history.'&nbsp;&nbsp;'.$btn_finish
 				];
 			}
 		}
@@ -356,11 +362,18 @@ class Project_Model extends CI_Model {
 		$status = 0;
 		$message = 'Metode tidak ditemukan';
 
-		$this->db->trans_begin();
-
 		if ($ms_action) {
 			$field = $ms_action->field;
 			$type = $ms_action->data_type;
+
+			if ($value_asli == '') {
+				return [
+					'status' => 0,
+					'message' => lang($field).' is required'
+				];
+			}
+
+			$this->db->trans_begin();
 
 			if ($type == 'date') {
 				$value = custom_date_format($value, 'd/m/Y', 'Y-m-d');
@@ -399,12 +412,12 @@ class Project_Model extends CI_Model {
 			$this->db->trans_commit();
 
 			$status = 1;
-			$message = 'Data berhasil disimpan';
+			$message = lang('ajax_msg_save_success');
 		} else {
 			$this->db->trans_rollback();
 
 			$status = 0;
-			$message = 'Gagal menyimpan data';
+			$message = lang('ajax_msg_save_fail');
 		}
 
 		$result = [
@@ -419,17 +432,17 @@ class Project_Model extends CI_Model {
 	{
 		return $this->db->query("
 			SELECT a.`kontrak`, a.`type`,
-			CASE WHEN a.fabric_actual <> '' AND a.aksesories_actual <> '' AND a.persiapan_actual = '' AND a.cad_actual = '' AND a.cutting_actual = '' AND a.sewing_actual = '' AND a.fg_actual = '' AND a.kirim_actual = ''
+			CASE WHEN a.fabric_actual <> '' AND a.aksesories_actual <> '' AND a.persiapan_actual IS NULL AND a.cad_actual IS NULL AND a.cutting_actual IS NULL AND a.sewing_actual IS NULL AND a.fg_actual IS NULL AND a.kirim_actual IS NULL
 				THEN 'field_persiapan_produksi'
-			WHEN a.fabric_actual <> '' AND a.aksesories_actual <> '' AND a.persiapan_actual <> '' AND a.cad_actual = '' AND a.cutting_actual = '' AND a.sewing_actual = '' AND a.fg_actual = '' AND a.kirim_actual = ''
+			WHEN a.fabric_actual <> '' AND a.aksesories_actual <> '' AND a.persiapan_actual <> '' AND a.cad_actual IS NULL AND a.cutting_actual IS NULL AND a.sewing_actual IS NULL AND a.fg_actual IS NULL AND a.kirim_actual IS NULL
 				THEN 'field_cad'
-			WHEN a.fabric_actual <> '' AND a.aksesories_actual <> '' AND a.persiapan_actual <> '' AND a.cad_actual <> '' AND a.cutting_actual = '' AND a.sewing_actual = '' AND a.fg_actual = '' AND a.kirim_actual = ''
+			WHEN a.fabric_actual <> '' AND a.aksesories_actual <> '' AND a.persiapan_actual <> '' AND a.cad_actual <> '' AND a.cutting_actual IS NULL AND a.sewing_actual IS NULL AND a.fg_actual IS NULL AND a.kirim_actual IS NULL
 				THEN 'field_cutting'
-			WHEN a.fabric_actual <> '' AND a.aksesories_actual <> '' AND a.persiapan_actual <> '' AND a.cad_actual <> '' AND a.cutting_actual <> '' AND a.sewing_actual = '' AND a.fg_actual = '' AND a.kirim_actual = ''
+			WHEN a.fabric_actual <> '' AND a.aksesories_actual <> '' AND a.persiapan_actual <> '' AND a.cad_actual <> '' AND a.cutting_actual <> '' AND a.sewing_actual IS NULL AND a.fg_actual IS NULL AND a.kirim_actual IS NULL
 				THEN 'field_sewing_inspect'
-			WHEN a.fabric_actual <> '' AND a.aksesories_actual <> '' AND a.persiapan_actual <> '' AND a.cad_actual <> '' AND a.cutting_actual <> '' AND a.sewing_actual <> '' AND a.fg_actual = '' AND a.kirim_actual = ''
+			WHEN a.fabric_actual <> '' AND a.aksesories_actual <> '' AND a.persiapan_actual <> '' AND a.cad_actual <> '' AND a.cutting_actual <> '' AND a.sewing_actual <> '' AND a.fg_actual IS NULL AND a.kirim_actual IS NULL
 				THEN 'field_masuk_finish_good'
-			WHEN a.fabric_actual <> '' AND a.aksesories_actual <> '' AND a.persiapan_actual <> '' AND a.cad_actual <> '' AND a.cutting_actual <> '' AND a.sewing_actual <> '' AND a.fg_actual <> '' AND a.kirim_actual = ''
+			WHEN a.fabric_actual <> '' AND a.aksesories_actual <> '' AND a.persiapan_actual <> '' AND a.cad_actual <> '' AND a.cutting_actual <> '' AND a.sewing_actual <> '' AND a.fg_actual <> '' AND a.kirim_actual IS NULL
 				THEN 'field_plan_kirim_sample'
 			WHEN a.fabric_actual <> '' AND a.aksesories_actual <> '' AND a.persiapan_actual <> '' AND a.cad_actual <> '' AND a.cutting_actual <> '' AND a.sewing_actual <> '' AND a.fg_actual <> '' AND a.kirim_actual <> ''
 				THEN 'selesai'
@@ -461,6 +474,249 @@ class Project_Model extends CI_Model {
 		}
 
 		return ['data' => $response];
+	}
+
+	public function dt_history($params)
+	{
+		$draw = $this->db->escape_str($params['draw']);
+		$order_column = $this->db->escape_str($params['order_column']);
+		$order_mode = $this->db->escape_str($params['order_mode']);
+		$start = $this->db->escape_str($params['start']);
+		$length = $this->db->escape_str($params['length']);
+		$search = $this->db->escape_str($params['search']);
+
+		$condition = '';
+		$order = '';
+		$limit = '';
+		$data = [];
+
+		$kolom_search = ['type', 'brand', 'kontrak', 'item', 'style', 'no_pattern', '`order`', 'size', 'qty', 'price', 'format_tec_sheet_plan', 'format_tec_sheet_actual', 'format_pattern_plan', 'format_pattern_actual', 'format_fabric_plan', 'format_fabric_actual', 'format_aksesories_plan', 'format_aksesories_actual', 'due_date', 'tujuan_sample', 'master_code', 'line', 'persiapan_plan', 'persiapan_actual', 'cutting_plan', 'cutting_actual', 'cad_plan', 'cad_actual', 'sewing_plan', 'sewing_actual', 'fg_plan', 'fg_actual', 'kirim_plan', 'kirim_actual', 'keterangan', 'format_finish'];
+		$kolom_order = ['type', 'type', 'brand', 'kontrak', 'item', 'style', 'no_pattern', '`order`', 'size', 'qty', 'price', 'tec_sheet_plan', 'tec_sheet_actual', 'pattern_plan', 'pattern_actual', 'fabric_plan', 'fabric_actual', 'aksesories_plan', 'aksesories_actual', 'due_date', 'tujuan_sample', 'master_code', 'line', 'persiapan_plan', 'persiapan_actual', 'cutting_plan', 'cutting_actual', 'cad_plan', 'cad_actual', 'sewing_plan', 'sewing_actual', 'fg_plan', 'fg_actual', 'kirim_plan', 'kirim_actual', 'finish', 'keterangan'];
+
+		$condition .= dt_searching($kolom_search, $search);
+		$order = dt_order($kolom_order, $order_column, $order_mode);
+
+		if ($length > 0) {
+			$limit = " LIMIT $start, $length ";
+		}
+
+		$sql = "
+			SELECT *, DATE_FORMAT(a.tec_sheet_plan, '%d/%m/%Y') AS format_tec_sheet_plan,
+			DATE_FORMAT(a.tec_sheet_actual, '%d/%m/%Y') AS format_tec_sheet_actual,
+			DATE_FORMAT(a.pattern_plan, '%d/%m/%Y') AS format_pattern_plan,
+			DATE_FORMAT(a.pattern_actual, '%d/%m/%Y') AS format_pattern_actual,
+			DATE_FORMAT(a.fabric_plan, '%d/%m/%Y') AS format_fabric_plan,
+			DATE_FORMAT(a.fabric_actual, '%d/%m/%Y') AS format_fabric_actual,
+			DATE_FORMAT(a.aksesories_plan, '%d/%m/%Y') AS format_aksesories_plan,
+			DATE_FORMAT(a.aksesories_actual, '%d/%m/%Y') AS format_aksesories_actual,
+			DATE_FORMAT(a.due_date, '%d/%m/%Y') AS format_due_date,
+			DATE_FORMAT(a.persiapan_plan, '%d/%m/%Y') AS format_persiapan_plan,
+			DATE_FORMAT(a.persiapan_actual, '%d/%m/%Y') AS format_persiapan_actual,
+			DATE_FORMAT(a.cutting_plan, '%d/%m/%Y') AS format_cutting_plan,
+			DATE_FORMAT(a.cutting_actual, '%d/%m/%Y') AS format_cutting_actual,
+			DATE_FORMAT(a.cad_plan, '%d/%m/%Y') AS format_cad_plan,
+			DATE_FORMAT(a.cad_actual, '%d/%m/%Y') AS format_cad_actual,
+			DATE_FORMAT(a.sewing_plan, '%d/%m/%Y') AS format_sewing_plan,
+			DATE_FORMAT(a.sewing_actual, '%d/%m/%Y') AS format_sewing_actual,
+			DATE_FORMAT(a.fg_plan, '%d/%m/%Y') AS format_fg_plan,
+			DATE_FORMAT(a.fg_actual, '%d/%m/%Y') AS format_fg_actual,
+			DATE_FORMAT(a.kirim_plan, '%d/%m/%Y') AS format_kirim_plan,
+			DATE_FORMAT(a.kirim_actual, '%d/%m/%Y') AS format_kirim_actual,
+			DATE_FORMAT(a.finish, '%d/%m/%Y') AS format_finish
+			FROM project_h a 
+			WHERE a.finish <> '' ";
+
+		$view = $this->db->query(" SELECT * FROM ( $sql ) AS tb WHERE 1 = 1 $condition $order $limit ")->result();
+		$count = $this->db->query(" SELECT COUNT(*) AS jumlah FROM ( $sql ) AS tb WHERE 1 = 1 $condition ")->row();
+		$jumlah = isset($count->jumlah) ? $count->jumlah : 0;
+
+		if ($view) {
+			$no = 1;
+			foreach ($view as $row) {
+				$data[] = [
+					'no' => $row->id,
+					'type' => $row->type,
+					'brand' => $row->brand,
+					'kontrak' => $row->kontrak,
+					'item' => $row->item,
+					'style' => $row->style,
+					'no_pattern' => $row->no_pattern,
+					'order' => $row->order,
+					'size' => $row->size,
+					'qty' => $row->qty,
+					'price' => $row->price,
+					'tec_sheet_plan' => $row->format_tec_sheet_plan,
+					'tec_sheet_actual' => $row->format_tec_sheet_actual,
+					'pattern_plan' => $row->format_pattern_plan,
+					'pattern_actual' => $row->format_pattern_actual,
+					'fabric_plan' => $row->format_fabric_plan,
+					'fabric_actual' => $row->format_fabric_actual,
+					'aksesories_plan' => $row->format_aksesories_plan,
+					'aksesories_actual' => $row->format_aksesories_actual,
+					'due_date' => $row->format_due_date,
+					'tujuan_sample' => $row->tujuan_sample,
+					'master_code' => $row->master_code,
+					'line' => $row->line,
+					'persiapan_plan' => $row->format_persiapan_plan,
+					'persiapan_actual' => $row->format_persiapan_actual,
+					'cutting_plan' => $row->format_cutting_plan,
+					'cutting_actual' => $row->format_cutting_actual,
+					'cad_plan' => $row->format_cad_plan,
+					'cad_actual' => $row->format_cad_actual,
+					'sewing_plan' => $row->format_sewing_plan,
+					'sewing_actual' => $row->format_sewing_actual,
+					'fg_plan' => $row->format_fg_plan,
+					'fg_actual' => $row->format_fg_actual,
+					'kirim_plan' => $row->format_kirim_plan,
+					'kirim_actual' => $row->format_kirim_actual,
+					'finish' => $row->format_finish,
+					'keterangan' => $row->keterangan
+				];
+			}
+		}
+
+		$response = [
+			'draw' => $draw,
+			'recordsTotal' => $jumlah,
+			'recordsFiltered' => $jumlah,
+			'data' => $data
+		];
+
+		return $response;
+	}
+
+	public function dashboard_list($type, $params = [])
+	{
+		$draw = $this->db->escape_str($params['draw']);
+		$order_column = $this->db->escape_str($params['order_column']);
+		$order_mode = $this->db->escape_str($params['order_mode']);
+		$start = $this->db->escape_str($params['start']);
+		$length = $this->db->escape_str($params['length']);
+		$search = $this->db->escape_str($params['search']);
+
+		$condition = '';
+		$order = '';
+		$limit = '';
+		$data = [];
+
+		$kolom_search = ['id', 'type', 'brand', 'kontrak', 'item', 'style'];
+		$kolom_order = ['id', 'type', 'brand', 'kontrak', 'item', 'style'];
+
+		$condition .= dt_searching($kolom_search, $search);
+		$order = dt_order($kolom_order, $order_column, $order_mode);
+
+		if ($type == 'sample-on-delivery') {
+
+			$sql = " 	SELECT a.id, a.type, a.brand, a.kontrak, a.item, a.style 
+						FROM project_h a
+						WHERE a.`fabric_actual` IS NULL
+						AND a.`aksesories_actual` IS NULL
+						AND a.`finish` IS NULL ";
+
+		} else if ($type == 'sample-on-process') {
+
+			$sql = " 	SELECT a.id, a.type, a.brand, a.kontrak, a.item, a.style 
+						FROM project_h a
+						WHERE a.`fabric_actual` != ''
+						AND a.`aksesories_actual` != ''
+						AND a.`kirim_actual` IS NULL
+						AND a.`finish` IS NULL ";
+
+		} else if ($type == 'sample-on-shipment') {
+
+			$sql = " 	SELECT a.id, a.type, a.brand, a.kontrak, a.item, a.style 
+						FROM project_h a
+						WHERE a.`fabric_actual` != ''
+						AND a.`aksesories_actual` != ''
+						AND a.`kirim_actual` != ''
+						AND a.`finish` IS NULL ";
+
+		} else if ($type == 'sample-finish') {
+
+			$sql = " 	SELECT a.id, a.type, a.brand, a.kontrak, a.item, a.style 
+						FROM project_h a
+						WHERE a.`fabric_actual` != ''
+						AND a.`aksesories_actual` != ''
+						AND a.`kirim_actual` != ''
+						AND a.`finish` != '' ";
+
+		} else {
+			return [];
+		}
+
+		$view = $this->db->query(" SELECT * FROM ( $sql ) AS tb WHERE 1 = 1 $condition $order $limit ")->result();
+		$count = $this->db->query(" SELECT COUNT(*) AS jumlah FROM ( $sql ) AS tb WHERE 1 = 1 $condition ")->row();
+		$jumlah = isset($count->jumlah) ? $count->jumlah : 0;
+
+		if ($view) {
+			$no = 1;
+			foreach ($view as $row) {
+				$data[] = [
+					'no' => $row->id,
+					'type' => $row->type,
+					'brand' => $row->brand,
+					'kontrak' => $row->kontrak,
+					'item' => $row->item,
+					'style' => $row->style
+				];
+			}
+		}
+
+		$response = [
+			'draw' => $draw,
+			'recordsTotal' => $jumlah,
+			'recordsFiltered' => $jumlah,
+			'data' => $data
+		];
+
+		return $response;
+	}
+
+	public function dashboard_counter($type)
+	{
+		if ($type == 'sample-on-delivery') {
+
+			$sql = " 	SELECT a.id, a.type, a.brand, a.kontrak, a.item, a.style 
+						FROM project_h a
+						WHERE a.`fabric_actual` IS NULL
+						AND a.`aksesories_actual` IS NULL
+						AND a.`finish` IS NULL ";
+
+		} else if ($type == 'sample-on-process') {
+
+			$sql = " 	SELECT a.id, a.type, a.brand, a.kontrak, a.item, a.style 
+						FROM project_h a
+						WHERE a.`fabric_actual` != ''
+						AND a.`aksesories_actual` != ''
+						AND a.`kirim_actual` IS NULL
+						AND a.`finish` IS NULL ";
+
+		} else if ($type == 'sample-on-shipment') {
+
+			$sql = " 	SELECT a.id, a.type, a.brand, a.kontrak, a.item, a.style 
+						FROM project_h a
+						WHERE a.`fabric_actual` != ''
+						AND a.`aksesories_actual` != ''
+						AND a.`kirim_actual` != ''
+						AND a.`finish` IS NULL ";
+
+		} else if ($type == 'sample-finish') {
+
+			$sql = " 	SELECT a.id, a.type, a.brand, a.kontrak, a.item, a.style 
+						FROM project_h a
+						WHERE a.`fabric_actual` != ''
+						AND a.`aksesories_actual` != ''
+						AND a.`kirim_actual` != ''
+						AND a.`finish` != '' ";
+
+		} else {
+			return [];
+		}
+
+		$count = $this->db->query(" SELECT COUNT(*) AS jumlah FROM ( $sql ) AS tb ")->row();
+		$jumlah = isset($count->jumlah) ? $count->jumlah : 0;
+
+		return $jumlah;
 	}
 }
 

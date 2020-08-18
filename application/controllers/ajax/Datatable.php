@@ -41,6 +41,55 @@ class Datatable extends CI_Controller {
 
 		echo json_encode($data);
 	}
+
+	public function dt_history()
+	{
+		$keyword = $this->input->get('keyword', TRUE);
+		$draw = $this->input->post('draw', TRUE);
+		$order = $this->input->post('order', TRUE);
+		$order_columns = isset($order[0]['column']) ? $order[0]['column'] : '';
+		$order_mode = isset($order[0]['dir']) ? $order[0]['dir'] : '';
+		$start = $this->input->post('start', TRUE);
+		$length = $this->input->post('length', TRUE);
+		$search = $this->input->post('search', TRUE);
+		$search_value = isset($search['value']) ? $search['value'] : '';
+
+		$data = $this->Project_Model->dt_history([
+			'draw' => $draw,
+			'order_column' => $order_columns,
+			'order_mode' => $order_mode,
+			'start' => $start,
+			'length' => $length,
+			'search' => $keyword
+		]);
+
+		echo json_encode($data);
+	}
+
+	public function dashboard_list()
+	{
+		$draw = $this->input->post('draw', TRUE);
+		$order = $this->input->post('order', TRUE);
+		$order_columns = isset($order[0]['column']) ? $order[0]['column'] : '';
+		$order_mode = isset($order[0]['dir']) ? $order[0]['dir'] : '';
+		$start = $this->input->post('start', TRUE);
+		$length = $this->input->post('length', TRUE);
+		$search = $this->input->post('search', TRUE);
+		$search_value = isset($search['value']) ? $search['value'] : '';
+		$type = $this->input->get('type', TRUE);
+
+
+		$data = $this->Project_Model->dashboard_list($type, [
+			'draw' => $draw,
+			'order_column' => $order_columns,
+			'order_mode' => $order_mode,
+			'start' => $start,
+			'length' => $length,
+			'search' => $search_value
+		]);
+
+		echo json_encode($data);
+	}
 }
 
 /* End of file Datatable.php */

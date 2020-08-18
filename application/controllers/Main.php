@@ -19,9 +19,7 @@ class Main extends MY_Controller {
 
 		$body = [
 			'content' => 'dashboard/dashboard',
-			'title' => lang('menu_dashboard'),
-			'total_sample' => $this->Project_Model->total_sample(),
-			'progress' => $this->Project_Model->dashboard_progress()
+			'title' => lang('menu_dashboard')
 		];
 
 		$footer = [

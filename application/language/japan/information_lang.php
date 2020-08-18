@@ -9,6 +9,7 @@ $lang['menu_change_password'] = 'パスワード変更';
 $lang['menu_management_user'] = 'ユーザー';
 $lang['menu_privilege'] = '特権ユーザー';
 $lang['menu_sample_detail'] = 'Sample Detail';
+$lang['menu_history'] = 'Sample History';
 
 // button
 $lang['btn_show'] = '表示';
@@ -121,13 +122,21 @@ $lang['confirm_logout'] = 'ログアウトしますか';
 
 $lang['confirm'] = '確認';
 $lang['confirm_save'] = '保存しますか';
+$lang['confirm_update'] = 'Are you sure want to update data ?';
 $lang['btn_yes'] = 'はい';
 $lang['btn_no'] = 'いいえ';
 
 $lang['progress_sample'] = 'Sample Progress';
 $lang['selesai'] = 'Done';
-$lang['proses_pengiriman'] = 'On Delivery';
+$lang['proses_pengiriman'] = 'On Process';
 $lang['sample_delivery'] = 'Sample on Delivery';
 $lang['delivery_date'] = 'DELIVERY DATE';
 $lang['bulan'] = 'MONTH';
 $lang['tahun'] = 'YEAR';
+$lang['finish-btn'] = 'FINISH BUTTON';
+$lang['finish'] = 'FINISH';
+
+$lang['sample-on-delivery'] = 'Sample On Delivery';
+$lang['sample-on-process'] = 'Sample On Process';
+$lang['sample-on-shipment'] = 'Sample On Shipment';
+$lang['sample-finish'] = 'Sample Finish';

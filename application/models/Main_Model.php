@@ -55,6 +55,30 @@ class Main_Model extends CI_Model {
 
 		return $this->db->affected_rows();
 	}
+
+	public function store_data($table, $data, $condition = [], $bulk = false)
+    {   
+        $this->db->trans_begin();
+        if ($condition) {
+            $this->db->update($table, $data, $condition);
+        } else {
+            if ($bulk) {
+                $this->db->insert_batch($table, $data);
+            } else {
+                $this->db->insert($table, $data);
+            }
+        }
+
+        if ($this->db->trans_status()) {
+            $this->db->trans_commit();
+
+            return true;
+        } else {
+            $this->db->trans_rollback();
+
+            return false;
+        }
+    }
 }
 
 /* End of file Main_Model.php */
