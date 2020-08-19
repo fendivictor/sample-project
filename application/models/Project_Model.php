@@ -605,6 +605,10 @@ class Project_Model extends CI_Model {
 		$condition .= dt_searching($kolom_search, $search);
 		$order = dt_order($kolom_order, $order_column, $order_mode);
 
+		if ($length > 0) {
+			$limit = " LIMIT $start, $length ";
+		}
+
 		if ($type == 'sample-on-delivery') {
 
 			$sql = " 	SELECT a.id, a.type, a.brand, a.kontrak, a.item, a.style 
