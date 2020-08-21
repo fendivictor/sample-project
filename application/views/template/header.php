@@ -74,6 +74,7 @@
             </ul>
 
             <!-- SEARCH FORM -->
+            <!--
             <form class="form-inline ml-3" action="<?= base_url('Search/index'); ?>">
                 <div class="input-group input-group-sm">
                     <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search" name="query" value="<?= $this->input->get('query', TRUE); ?>">
@@ -84,6 +85,30 @@
                     </div>
                 </div>
             </form>
+            -->
+
+
+            <ul class="navbar-nav ml-auto">
+                <!-- Notifications Dropdown Menu -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false" id="notif-bell">
+                    <i class="far fa-bell fa-lg" style="font-size: 24px;"></i>
+                    <span class="badge badge-danger navbar-badge">
+                        <span class="notif-counter-value">0</span>
+                    </span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <span class="dropdown-item dropdown-header">
+                            <span class="notif-counter-value">0</span> Notifications
+                        </span>
+
+                        <div id="notification-result"></div>
+
+                        <div class="dropdown-divider"></div>
+                        <a href="<?= base_url('Notification/') ?>" class="dropdown-item dropdown-footer">See All Notifications</a>
+                    </div>
+                </li>
+            </ul>
         </nav>
         <!-- /.navbar -->
 

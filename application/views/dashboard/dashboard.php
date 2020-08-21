@@ -140,6 +140,7 @@
                                         <th align="center"><?= lang('field_kontrak'); ?></th>
                                         <th align="center"><?= lang('field_item'); ?></th>
                                         <th align="center"><?= lang('field_style'); ?></th>
+                                        <th align="center"><?= lang('field_status'); ?></th>
                                     </tr>
                                 </thead>
                             </table>

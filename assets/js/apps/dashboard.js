@@ -35,14 +35,25 @@ $(document).ready(function() {
 			});
 	}
 
-	const columnDefinition = [
-		{targets: 0, data: 'no'},
-		{targets: 1, data: 'type'},
-		{targets: 2, data: 'brand'},
-		{targets: 3, data: 'kontrak'},
-		{targets: 4, data: 'item'},
-		{targets: 5, data: 'style'}
-	];
+	const columnDefinition = {
+		process: [
+			{targets: 0, data: 'no'},
+			{targets: 1, data: 'type'},
+			{targets: 2, data: 'brand'},
+			{targets: 3, data: 'kontrak'},
+			{targets: 4, data: 'item'},
+			{targets: 5, data: 'style'},
+			{targets: 6, data: 'status'}
+		],
+		default: [
+			{targets: 0, data: 'no'},
+			{targets: 1, data: 'type'},
+			{targets: 2, data: 'brand'},
+			{targets: 3, data: 'kontrak'},
+			{targets: 4, data: 'item'},
+			{targets: 5, data: 'style'}
+		]
+	}	
 
 	const dtDelivery = $("#tb-sample-on-delivery").DataTable({
 		processing: true,
@@ -52,7 +63,7 @@ $(document).ready(function() {
 			url: config.datatable.delivery,
 			type: 'post'
 		},
-		columnDefs: columnDefinition
+		columnDefs: columnDefinition.default
 	});
 
 	const dtProcess = $("#tb-sample-on-process").DataTable({
@@ -63,7 +74,7 @@ $(document).ready(function() {
 			url: config.datatable.process,
 			type: 'post'
 		},
-		columnDefs: columnDefinition
+		columnDefs: columnDefinition.process
 	});
 
 	const dtShipment = $("#tb-sample-on-shipment").DataTable({
@@ -74,7 +85,7 @@ $(document).ready(function() {
 			url: config.datatable.shipment,
 			type: 'post'
 		},
-		columnDefs: columnDefinition
+		columnDefs: columnDefinition.default
 	});
 
 	const dtFinish = $("#tb-sample-finish").DataTable({
@@ -85,6 +96,6 @@ $(document).ready(function() {
 			url: config.datatable.finish,
 			type: 'post'
 		},
-		columnDefs: columnDefinition
+		columnDefs: columnDefinition.default
 	});
 });

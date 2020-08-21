@@ -599,16 +599,6 @@ class Project_Model extends CI_Model {
 		$limit = '';
 		$data = [];
 
-		$kolom_search = ['id', 'type', 'brand', 'kontrak', 'item', 'style'];
-		$kolom_order = ['id', 'type', 'brand', 'kontrak', 'item', 'style'];
-
-		$condition .= dt_searching($kolom_search, $search);
-		$order = dt_order($kolom_order, $order_column, $order_mode);
-
-		if ($length > 0) {
-			$limit = " LIMIT $start, $length ";
-		}
-
 		if ($type == 'sample-on-delivery') {
 
 			$sql = " 	SELECT a.id, a.type, a.brand, a.kontrak, a.item, a.style 
@@ -617,14 +607,36 @@ class Project_Model extends CI_Model {
 						AND a.`aksesories_actual` IS NULL
 						AND a.`finish` IS NULL ";
 
+			$kolom_search = ['id', 'type', 'brand', 'kontrak', 'item', 'style'];
+			$kolom_order = ['id', 'type', 'brand', 'kontrak', 'item', 'style'];
+
 		} else if ($type == 'sample-on-process') {
 
-			$sql = " 	SELECT a.id, a.type, a.brand, a.kontrak, a.item, a.style 
+			$sql = " 	SELECT a.id, a.type, a.brand, a.kontrak, a.item, a.style,
+						CASE WHEN a.fabric_actual <> '' AND a.aksesories_actual <> '' AND a.persiapan_actual IS NULL AND a.cad_actual IS NULL AND a.cutting_actual IS NULL AND a.sewing_actual IS NULL AND a.fg_actual IS NULL AND a.kirim_actual IS NULL
+							THEN 'field_persiapan_produksi'
+						WHEN a.fabric_actual <> '' AND a.aksesories_actual <> '' AND a.persiapan_actual <> '' AND a.cad_actual IS NULL AND a.cutting_actual IS NULL AND a.sewing_actual IS NULL AND a.fg_actual IS NULL AND a.kirim_actual IS NULL
+							THEN 'field_cad'
+						WHEN a.fabric_actual <> '' AND a.aksesories_actual <> '' AND a.persiapan_actual <> '' AND a.cad_actual <> '' AND a.cutting_actual IS NULL AND a.sewing_actual IS NULL AND a.fg_actual IS NULL AND a.kirim_actual IS NULL
+							THEN 'field_cutting'
+						WHEN a.fabric_actual <> '' AND a.aksesories_actual <> '' AND a.persiapan_actual <> '' AND a.cad_actual <> '' AND a.cutting_actual <> '' AND a.sewing_actual IS NULL AND a.fg_actual IS NULL AND a.kirim_actual IS NULL
+							THEN 'field_sewing_inspect'
+						WHEN a.fabric_actual <> '' AND a.aksesories_actual <> '' AND a.persiapan_actual <> '' AND a.cad_actual <> '' AND a.cutting_actual <> '' AND a.sewing_actual <> '' AND a.fg_actual IS NULL AND a.kirim_actual IS NULL
+							THEN 'field_masuk_finish_good'
+						WHEN a.fabric_actual <> '' AND a.aksesories_actual <> '' AND a.persiapan_actual <> '' AND a.cad_actual <> '' AND a.cutting_actual <> '' AND a.sewing_actual <> '' AND a.fg_actual <> '' AND a.kirim_actual IS NULL
+							THEN 'field_plan_kirim_sample'
+						WHEN a.fabric_actual <> '' AND a.aksesories_actual <> '' AND a.persiapan_actual <> '' AND a.cad_actual <> '' AND a.cutting_actual <> '' AND a.sewing_actual <> '' AND a.fg_actual <> '' AND a.kirim_actual <> ''
+							THEN 'selesai'
+						ELSE 'proses_pengiriman'
+						END AS `status`
 						FROM project_h a
 						WHERE a.`fabric_actual` != ''
 						AND a.`aksesories_actual` != ''
 						AND a.`kirim_actual` IS NULL
 						AND a.`finish` IS NULL ";
+
+			$kolom_search = ['id', 'type', 'brand', 'kontrak', 'item', 'style', 'status'];
+			$kolom_order = ['id', 'type', 'brand', 'kontrak', 'item', 'style', 'status'];
 
 		} else if ($type == 'sample-on-shipment') {
 
@@ -635,6 +647,9 @@ class Project_Model extends CI_Model {
 						AND a.`kirim_actual` != ''
 						AND a.`finish` IS NULL ";
 
+			$kolom_search = ['id', 'type', 'brand', 'kontrak', 'item', 'style'];
+			$kolom_order = ['id', 'type', 'brand', 'kontrak', 'item', 'style'];
+
 		} else if ($type == 'sample-finish') {
 
 			$sql = " 	SELECT a.id, a.type, a.brand, a.kontrak, a.item, a.style 
@@ -644,8 +659,18 @@ class Project_Model extends CI_Model {
 						AND a.`kirim_actual` != ''
 						AND a.`finish` != '' ";
 
+			$kolom_search = ['id', 'type', 'brand', 'kontrak', 'item', 'style'];
+			$kolom_order = ['id', 'type', 'brand', 'kontrak', 'item', 'style'];
+
 		} else {
 			return [];
+		}
+
+		$condition .= dt_searching($kolom_search, $search);
+		$order = dt_order($kolom_order, $order_column, $order_mode);
+
+		if ($length > 0) {
+			$limit = " LIMIT $start, $length ";
 		}
 
 		$view = $this->db->query(" SELECT * FROM ( $sql ) AS tb WHERE 1 = 1 $condition $order $limit ")->result();
@@ -654,15 +679,19 @@ class Project_Model extends CI_Model {
 
 		if ($view) {
 			$no = 1;
-			foreach ($view as $row) {
-				$data[] = [
-					'no' => $row->id,
-					'type' => $row->type,
-					'brand' => $row->brand,
-					'kontrak' => $row->kontrak,
-					'item' => $row->item,
-					'style' => $row->style
+			foreach ($view as $row => $val) {
+				$data[$row] = [
+					'no' => $val->id,
+					'type' => $val->type,
+					'brand' => $val->brand,
+					'kontrak' => $val->kontrak,
+					'item' => $val->item,
+					'style' => $val->style
 				];
+
+				if ($type == 'sample-on-process') {
+					$data[$row]['status'] = '<label>'.lang($val->status).'</label>';
+				}
 			}
 		}
 

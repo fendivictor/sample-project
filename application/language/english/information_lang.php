@@ -10,6 +10,8 @@ $lang['menu_management_user'] = 'Management User';
 $lang['menu_privilege'] = 'Privilege User';
 $lang['menu_sample_detail'] = 'Sample Detail';
 $lang['menu_history'] = 'Sample History';
+$lang['menu_finish'] = 'Sample Finish';
+$lang['menu_notification'] = 'Notification';
 
 $lang['dashboard'] = 'Dashboard';
 $lang['home'] = 'Home';
@@ -55,6 +57,7 @@ $lang['field_finish_plan'] = 'FINISH PLAN';
 $lang['field_actual_finish'] = 'ACTUAL FINISH';
 $lang['field_plan'] = 'PLAN';
 $lang['field_actual'] = 'ACTUAL';
+$lang['field_status'] = 'STATUS';
 
 $lang['form_update'] = 'Form Update';
 $lang['form_attachment'] = 'Attachment';

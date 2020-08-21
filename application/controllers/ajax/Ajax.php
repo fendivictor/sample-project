@@ -10,7 +10,7 @@ class Ajax extends CI_Controller {
 			show_404();
 		}
 
-		$this->load->model(['Login_model', 'Main_Model', 'Project_Model', 'User_Model']);
+		$this->load->model(['Login_model', 'Main_Model', 'Project_Model', 'User_Model', 'Notification_Model']);
 		$islogin = $this->Login_model->is_login();
 		if ($islogin == FALSE) {
 			redirect(base_url());
@@ -285,6 +285,52 @@ class Ajax extends CI_Controller {
 		$jumlah = $this->Project_Model->dashboard_counter($type);
 
 		echo json_encode(['jumlah' => $jumlah]);
+	}
+
+	public function get_total_notification()
+	{
+		$username = $this->session->userdata('username');
+
+		$data = $this->Notification_Model->total_unread($username);
+
+		echo json_encode([
+			'total' => $data
+		]);
+	}
+
+	public function get_unread_notification()
+	{
+		$username = $this->session->userdata('username');
+
+		$data = $this->Notification_Model->unread_notification($username);
+
+		$response = [];
+
+		if ($data) {
+			foreach ($data as $row) {
+				$response[] = [
+					'url' => base_url('Project/detail?id='. $row->id_project),
+					'brand' => $row->brand,
+					'style' => $row->style,
+					'activity' => lang($row->field),
+					'timestamp' => custom_date_format($row->insert_at, 'Y-m-d H:i:s', 'd/m/Y H:i'),
+					'value' => $row->value
+				];
+			}
+		}
+
+		echo json_encode([
+			'data' => $response
+		]);
+	}
+
+	public function read_all_notif()
+	{
+		$username = $this->session->userdata('username');
+
+		$update = $this->Notification_Model->read_all_notif($username);
+
+		echo json_encode($update);
 	}
 }
 

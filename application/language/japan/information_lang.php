@@ -10,6 +10,8 @@ $lang['menu_management_user'] = 'ユーザー';
 $lang['menu_privilege'] = '特権ユーザー';
 $lang['menu_sample_detail'] = 'Sample Detail';
 $lang['menu_history'] = 'Sample History';
+$lang['menu_finish'] = 'サンプル完了';
+$lang['menu_notification'] = 'Notification';
 
 $lang['dashboard'] = '表示板';
 $lang['home'] = '自宅';
@@ -55,6 +57,7 @@ $lang['field_finish_plan'] = '終了予定日';
 $lang['field_actual_finish'] = '終了';
 $lang['field_plan'] = '計画';
 $lang['field_actual'] = '実績';
+$lang['field_status'] = 'STATUS';
 
 $lang['form_update'] = '更新';
 $lang['form_attachment'] = '添付';

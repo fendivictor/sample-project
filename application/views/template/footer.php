@@ -175,6 +175,8 @@
             }
         }
     ?>
+
+    <script src="<?= base_url() ?>assets/js/apps/notification.js"></script>
 </body>
 
 </html>

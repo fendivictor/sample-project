@@ -13,7 +13,7 @@ $(document).ready(function() {
 			type: 'post'
 		},
 		fixedColumns:   {
-            leftColumns: 0,
+            leftColumns: 6,
             rightColumns: 1
         },
 		searching: false,
@@ -25,7 +25,7 @@ $(document).ready(function() {
 			{targets: 3, data: 'kontrak', width: 100, 'className': 'text-center'},
 			{targets: 4, data: 'item', width: 100, 'className': 'text-center'},
 			{targets: 5, data: 'style', width: 120, 'className': 'text-center'},
-			{targets: 6, data: 'no_pattern', width: 100, 'className': 'text-center'},
+			{targets: 6, data: 'no_pattern', width: 150, 'className': 'text-center'},
 			{targets: 7, data: 'order', width: 100, 'className': 'text-center'},
 			{targets: 8, data: 'size', width: 200, 'className': 'text-center'},
 			{targets: 9, data: 'qty', width: 80, 'className': 'text-center'},

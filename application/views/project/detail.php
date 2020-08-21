@@ -74,7 +74,7 @@
                                                 </div>
                                             </div>';
                                 } else {
-                                    echo '<h5>Belum ada data</h5>';
+                                    echo '<h5>No Activity yet.</h5>';
                                 }
                             ?>
                             
