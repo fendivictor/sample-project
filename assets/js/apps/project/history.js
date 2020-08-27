@@ -11,9 +11,9 @@ $(document).ready(function() {
 			type: 'post'
 		},
 		searching: false,
-		order: [[1, 'asc']],
+		order: [[0, 'asc']],
 		columnDefs: [
-			{targets: 0, data: 'no', orderable: false},
+			{targets: 0, data: 'no'},
 			{targets: 1, data: 'type', width: 100, 'className': 'text-center'},
 			{targets: 2, data: 'brand', width: 100, 'className': 'text-center'},
 			{targets: 3, data: 'kontrak', width: 100, 'className': 'text-center'},
