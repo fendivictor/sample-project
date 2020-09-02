@@ -1,5 +1,15 @@
 Dropzone.autoDiscover = false;
 $(document).ready(function() {
+	const isMobile = $('#is-mobile').data('value');
+	let configFixColumn = {
+        leftColumns: 6,
+        rightColumns: 1
+    }
+
+    if (isMobile == 1) {
+    	configFixColumn = {};
+    }
+
 	var uploaded = [];
 	var table = $("#dt-table").DataTable({
 		serverSide: true,
@@ -12,10 +22,7 @@ $(document).ready(function() {
 			url: baseUrl + 'ajax/Datatable/dt_project',
 			type: 'post'
 		},
-		fixedColumns:   {
-            leftColumns: 6,
-            rightColumns: 1
-        },
+		fixedColumns: configFixColumn,
 		searching: false,
 		order: [[0, 'asc']],
 		columnDefs: [

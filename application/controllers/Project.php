@@ -15,6 +15,13 @@ class Project extends MY_Controller {
 		if ($page == false) {
 			show_404();
 		}
+
+		$isMobile = 0;
+		$this->load->library('Mobile_Detect');
+		$detect = new Mobile_Detect;
+		if($detect->isMobile()) {
+			$isMobile = 1;
+		}
 		
 		$header = [];
 		$username = $this->session->userdata('username');
@@ -24,7 +31,8 @@ class Project extends MY_Controller {
 		$body = [
 			'content' => 'project/list',
 			'title' => lang('menu_project_list'),
-			'privilege' => $privilege
+			'privilege' => $privilege,
+			'mobile' => $isMobile
 		];
 
 		$footer = [

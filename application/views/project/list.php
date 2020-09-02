@@ -139,3 +139,5 @@
         </div>
     </div>
 </div>
+
+<div id="is-mobile" data-value="<?= $mobile; ?>"></div>
