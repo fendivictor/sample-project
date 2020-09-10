@@ -33,7 +33,7 @@ $lang['field_nopattern'] = '型紙NO';
 $lang['field_order'] = '新型・定番';
 $lang['field_size'] = 'サイズ';
 $lang['field_qty'] = '数量';
-$lang['field_price'] = '価格';
+$lang['field_price'] = '工賃';
 $lang['field_due_date'] = '納期';
 $lang['field_tujuan_sample'] = 'サンプル目的'; 
 $lang['field_keyword'] = 'キーワード';
@@ -143,6 +143,6 @@ $lang['finish-btn'] = 'FINISH BUTTON';
 $lang['finish'] = 'FINISH';
 
 $lang['sample-on-delivery'] = 'サンプル（入荷）';
-$lang['sample-on-process'] = 'サンプル作っている';
+$lang['sample-on-process'] = 'サンプル作製中';
 $lang['sample-on-shipment'] = 'サンプル（出荷）';
 $lang['sample-finish'] = 'サンプル完了';

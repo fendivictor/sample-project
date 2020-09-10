@@ -62,6 +62,7 @@
 								<th colspan="2" class="table-header-style indonesia"><?= lang('field_plan_kirim_sample'); ?></th>
 								<th rowspan="2" class="table-header-style japan"><?= lang('finish'); ?></th>
 								<th rowspan="2" class="table-header-style indonesia"><?= lang('keterangan'); ?></th>
+								<th rowspan="2" class="table-header-style indonesia"><i class="fa fa-bars"></i></th>
 							</tr>
 							<tr>
 								<th class="table-header-style japan"><?= lang('field_nopattern'); ?></th>

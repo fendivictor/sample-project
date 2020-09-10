@@ -49,12 +49,19 @@ $(document).ready(function() {
 			{targets: 33, data: 'kirim_plan', width: 80, 'className': 'text-center'},
 			{targets: 34, data: 'kirim_actual', width: 80, 'className': 'text-center'},
 			{targets: 35, data: 'finish', width: 80, 'className': 'text-center'},
-			{targets: 36, data: 'keterangan', width: 280, 'className': 'text-center'}
+			{targets: 36, data: 'keterangan', width: 280, 'className': 'text-center'},
+			{targets: 37, data: 'tools', width: 60, 'className': 'text-center'}
 		]
 	});
 
 	$("#btn-tampil").click(function() {
 		let keyword	= $('#keyword').val();
 		table.ajax.url(baseUrl + 'ajax/Datatable/dt_history?keyword=' + keyword).load();
+	});
+
+	$(document).on('click', '.btn-history', function() {
+		let id = $(this).data('id');
+
+		window.open(baseUrl + 'Project/detail?id=' + id, '_blank');
 	});
 });

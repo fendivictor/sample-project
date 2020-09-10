@@ -91,7 +91,7 @@
 			<div class="col-md-3">
 				<div class="form-group">
 					<label for=""><?= lang('field_price'); ?> <span class="text-danger">*</span></label>
-					<input type="number" class="form-control" id="price" name="price" required="required" autocomplete="off">
+					<input type="number" class="form-control" id="price" name="price" required="required" autocomplete="off" step="any">
 				</div>
 			</div>
 

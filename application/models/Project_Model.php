@@ -533,6 +533,8 @@ class Project_Model extends CI_Model {
 		if ($view) {
 			$no = 1;
 			foreach ($view as $row) {
+				$btn_history = '<a href="javascript:;" class="btn btn-success btn-xs btn-history" data-id="'.$row->id.'"><i class="fa fa-history"></i></a>';
+
 				$data[] = [
 					'no' => $row->id,
 					'type' => $row->type,
@@ -570,7 +572,8 @@ class Project_Model extends CI_Model {
 					'kirim_plan' => $row->format_kirim_plan,
 					'kirim_actual' => $row->format_kirim_actual,
 					'finish' => $row->format_finish,
-					'keterangan' => $row->keterangan
+					'keterangan' => $row->keterangan,
+					'tools' => $btn_history
 				];
 			}
 		}
