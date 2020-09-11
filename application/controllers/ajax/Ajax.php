@@ -19,6 +19,95 @@ class Ajax extends CI_Controller {
 		$this->load->library('form_validation');
 	}
 
+	public function edit_project()
+	{
+		$id = $this->input->post('id', TRUE);
+		$type = $this->input->post('type', TRUE);
+		$brand = $this->input->post('brand', TRUE);
+		$kontrak = $this->input->post('kontrak', TRUE);
+		$item = $this->input->post('item', TRUE);
+		$style = $this->input->post('style', TRUE);
+		$no_pattern = $this->input->post('no-pattern', TRUE);
+		$order_type = $this->input->post('order-type', TRUE);
+		$size = $this->input->post('size', TRUE);
+		$qty = $this->input->post('qty', TRUE);
+		$price = $this->input->post('price', TRUE);
+		// $tec_plan_kirim = $this->input->post('tec-plan-kirim', TRUE);
+		// $pattern_plan_kirim = $this->input->post('pattern-plan-kirim', TRUE);
+		// $fabric_plan_kirim = $this->input->post('fabric-plan-kirim', TRUE);
+		// $aksesories_plan_kirim = $this->input->post('aksesories-plan-kirim', TRUE);
+		$due_date = $this->input->post('due-date', TRUE);
+		$tujuan_sample = $this->input->post('tujuan-sample', TRUE);
+		$username = $this->session->userdata('username');
+		$now = $this->Main_Model->get_time('%Y-%m-%d %H:%i:%s');
+
+		$this->form_validation->set_rules('type', 'Type', 'required');
+		$this->form_validation->set_rules('brand', 'Brand', 'required');
+		$this->form_validation->set_rules('kontrak', 'Kontrak', 'required');
+		$this->form_validation->set_rules('item', 'Item', 'required');
+		$this->form_validation->set_rules('style', 'Style', 'required');
+		$this->form_validation->set_rules('no-pattern', 'No Pattern', 'required');
+		$this->form_validation->set_rules('order-type', 'Order Type', 'required');
+		$this->form_validation->set_rules('size', 'Size', 'required');
+		$this->form_validation->set_rules('qty', 'Qty', 'required');
+		$this->form_validation->set_rules('price', 'Price', 'required');
+		// $this->form_validation->set_rules('tec-plan-kirim', 'Tec Plan Kirim', 'required');
+		// $this->form_validation->set_rules('pattern-plan-kirim', 'Pattern Plan Kirim', 'required');
+		// $this->form_validation->set_rules('fabric-plan-kirim', 'Fabric Plan Kirim', 'required');
+		// $this->form_validation->set_rules('aksesories-plan-kirim', 'Aksesories Plan Kirim', 'required');
+		$this->form_validation->set_rules('due-date', 'Due Date', 'required');
+		$this->form_validation->set_rules('tujuan-sample', 'Tujuan Sample', 'required');
+
+		if ($this->form_validation->run()) {
+			// $tec_plan_kirim = custom_date_format($tec_plan_kirim, 'd/m/Y', 'Y-m-d');
+			// $pattern_plan_kirim = custom_date_format($pattern_plan_kirim, 'd/m/Y', 'Y-m-d');
+			// $fabric_plan_kirim = custom_date_format($fabric_plan_kirim, 'd/m/Y', 'Y-m-d');
+			// $aksesories_plan_kirim = custom_date_format($aksesories_plan_kirim, 'd/m/Y', 'Y-m-d');
+			$due_date = custom_date_format($due_date, 'd/m/Y', 'Y-m-d');
+
+			$data = [
+				'type' => $type,
+				'brand' => $brand,
+				'kontrak' => $kontrak,
+				'item' => $item,
+				'style' => $style,
+				'no_pattern' => $no_pattern,
+				'order' => $order_type,
+				'size' => $size,
+				'qty' => $qty,
+				'price' => $price,
+				// 'tec_sheet_plan' => $tec_plan_kirim,
+				// 'pattern_plan' => $pattern_plan_kirim,
+				// 'fabric_plan' => $fabric_plan_kirim,
+				// 'aksesories_plan' => $aksesories_plan_kirim,
+				'due_date' => $due_date,
+				'tujuan_sample' => $tujuan_sample,
+				'insert_at' => $now,
+				'user_insert' => $username
+			];
+
+			$simpan = $this->Project_Model->edit_project($data, $id);
+
+			$status = 0;
+			$message = lang('ajax_msg_update_fail');
+
+			if ($simpan) {
+				$status = 1;
+				$message = lang('ajax_msg_update_success');
+			}
+		} else {
+			$status = 0;
+			$message = validation_errors();
+		}
+
+		$result = [
+			'status' => $status,
+			'message' => $message
+		];
+
+		echo json_encode($result);
+	}
+
 	public function add_project()
 	{
 		$type = $this->input->post('type', TRUE);

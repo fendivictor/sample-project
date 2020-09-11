@@ -102,6 +102,58 @@ class Project_Model extends CI_Model {
 		}
 	}
 
+	public function edit_project($data, $id)
+	{
+		$username = $this->session->userdata('username');
+		$now = $this->Main_Model->get_time('%Y-%m-%d %H:%i:%s');
+
+		$old = $this->db->where(['id' => $id])->get('project_h')->row();
+
+		$this->db->trans_begin();
+
+		$this->db->where(['id' => $id])->update('project_h', $data);
+
+		$new = $this->db->where(['id' => $id])->get('project_h')->row();
+
+		$field = ['type', 'brand', 'kontrak', 'item', 'style', 'no_pattern', 'order', 'size', 'qty', 'price', 'due_date', 'tujuan_sample'];
+		$lang = ['edit-type', 'edit-brand', 'edit-kontrak', 'edit-item', 'edit-style', 'edit-nopattern', 'edit-order', 'edit-size', 'edit-qty', 'edit-price', 'edit-duedate', 'edit-tujuan'];
+
+
+		foreach ($field as $row => $val) {
+			if ($old->$val != $new->$val) {
+
+				$value = $new->$val;
+				if ($lang[$row] == 'edit-duedate') {
+					$value = custom_date_format($value, 'Y-m-d', 'd/m/Y');
+				}
+
+				$this->db->insert('project_d', ['id_project' => $id, 'description' => '', 'user_insert' => $username]);
+
+				$id_project_d = $this->db->insert_id();
+
+				$this->db->insert('log_activity', [
+					'id_project' => $id, 
+					'id_project_d' => $id_project_d, 
+					'activity_type' => $lang[$row], 
+					'user_insert' => $username,
+					'value' => $value,
+					'note' => ''
+				]);
+			}
+		}
+
+		
+		if ($this->db->trans_status()) {
+			$this->db->trans_commit();
+
+			return true;
+		} else {
+			$this->db->trans_rollback();
+
+			return false;
+		}
+	}
+
 	public function dt_project($params)
 	{
 		$draw = $this->db->escape_str($params['draw']);
@@ -172,11 +224,31 @@ class Project_Model extends CI_Model {
 		if ($view) {
 			$no = 1;
 			foreach ($view as $row) {
-				$btn_history = '<a href="javascript:;" class="btn btn-success btn-xs btn-history" data-id="'.$row->id.'"><i class="fa fa-history"></i></a>';
+				$tools = '';
+
+				$btn_history = '<a title="History" href="javascript:;" class="btn btn-success btn-xs btn-history" data-id="'.$row->id.'"><i class="fa fa-history"></i></a>';
+
+				$tools .= $btn_history;
 
 				$btn_finish = '';
 				if (in_array('finish-btn', $arrPrivilege) && $row->format_fabric_plan != '' && $row->format_aksesories_plan != '' && $row->format_persiapan_actual != '' && $row->format_cad_actual != '' && $row->format_cutting_actual != '' && $row->format_sewing_actual != '' && $row->format_fg_actual != '' && $row->format_kirim_actual != '') {
-					$btn_finish = '<a href="javascript:;" class="btn btn-primary btn-xs btn-finish" data-id="'.$row->id.'"><i class="fa fa-check"></i></a>';
+					$btn_finish = '<a title="Finish" href="javascript:;" class="btn btn-primary btn-xs btn-finish" data-id="'.$row->id.'"><i class="fa fa-check"></i></a>';
+
+					$tools .= '&nbsp;&nbsp;'.$btn_finish;
+				}
+
+				$btn_edit = '';
+				if (in_array('edit-btn', $arrPrivilege)) {
+					$btn_edit = '<a title="Edit" href="javascript:;" class="btn btn-warning btn-xs btn-edit" data-id="'.$row->id.'"><i class="fa fa-edit"></i></a>';
+
+					$tools .= '&nbsp;&nbsp;'.$btn_edit;
+				}
+
+				$btn_duplicate = '';
+				if (in_array('duplicate-btn', $arrPrivilege)) {
+					$btn_duplicate = '<a title="Copy" href="javascript:;" class="btn btn-default btn-xs btn-duplicate" data-id="'.$row->id.'"><i class="fa fa-copy"></i></a>';
+
+					$tools .= '&nbsp;&nbsp;'.$btn_duplicate;
 				}
 
 				$btn_tec_sheet_plan = $row->format_tec_sheet_plan;
@@ -331,7 +403,7 @@ class Project_Model extends CI_Model {
 					'kirim_plan' => $btn_kirim_plan,
 					'kirim_actual' => $btn_kirim_actual,
 					'keterangan' => $btn_keterangan,
-					'tools' => $btn_history.'&nbsp;&nbsp;'.$btn_finish
+					'tools' => $tools
 				];
 			}
 		}

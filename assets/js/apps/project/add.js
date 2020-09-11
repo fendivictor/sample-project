@@ -1,4 +1,6 @@
 $(document).ready(function() {
+	let urlAction = (actionMode == 'edit') ? baseUrl + 'ajax/Ajax/edit_project' : baseUrl + 'ajax/Ajax/add_project';
+
 	$("#form-data").submit(function(e) {
 		e.preventDefault();
 		let formData = new FormData($(this)[0]);
@@ -13,7 +15,7 @@ $(document).ready(function() {
 		}).then((result) => {
 		  	if (result.value) {
 		  		let config = {
-					url: baseUrl + 'ajax/Ajax/add_project',
+					url: urlAction,
 					data: formData,
 					type: 'post',
 					dataType: 'json',

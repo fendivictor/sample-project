@@ -146,3 +146,19 @@ $lang['sample-on-delivery'] = 'サンプル（入荷）';
 $lang['sample-on-process'] = 'サンプル作製中';
 $lang['sample-on-shipment'] = 'サンプル（出荷）';
 $lang['sample-finish'] = 'サンプル完了';
+
+$lang['edit-btn'] = 'EDIT BUTTON';
+$lang['duplicate-btn'] = 'DUPLICATE BUTTON';
+
+$lang['edit-type'] = 'メンズ・レディース';
+$lang['edit-brand'] = 'ブランド';
+$lang['edit-kontrak'] = '契約番号';
+$lang['edit-item'] = 'アイテム';
+$lang['edit-style'] = '品番';
+$lang['edit-nopattern'] = '型紙NO';
+$lang['edit-order'] = '新型・定番';
+$lang['edit-size'] = 'サイズ';
+$lang['edit-qty'] = '数量';
+$lang['edit-price'] = '工賃';
+$lang['edit-duedate'] = '納期';
+$lang['edit-tujuan'] = 'サンプル目的'; 

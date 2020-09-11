@@ -71,15 +71,52 @@ class Project extends MY_Controller {
 			show_404();
 		}
 
+		$action = $this->input->get('action', TRUE);
+		$id = $this->input->get('id', TRUE);
+
+		$data_id = $this->Main_Model->view_data('project_h', ['id' => $id], false);
+
+		$opt_jenis = [
+			'LADIES' => 'LADIES',
+			'MENS' => 'MENS'
+		];
+
+		$opt_item = [
+			'JK' => 'JK',
+			'PNT' => 'PNT',
+			'SK' => 'SK',
+			'2P' => '2P',
+			'2PP' => '2PP',
+			'3P' => '3P',
+			'PNT ONLY' => 'PNT ONLY',
+			'JK ONLY' => 'JK ONLY'
+		];
+
+		$opt_order = [
+			'NEW' => 'NEW',
+			'REPEAT' => 'REPEAT'
+		];
+
 		$header = [];
 
 		$body = [
 			'content' => 'project/add',
-			'title' => lang('menu_add_project')
+			'title' => lang('menu_add_project'),
+			'data' => $data_id,
+			'opt_jenis' => $opt_jenis,
+			'opt_item' => $opt_item,
+			'opt_order' => $opt_order,
+			'id' => ($action == 'edit') ? $id : ''
 		];
 
 		$footer = [
-			'js' => ['assets/js/apps/project/add.js']
+			'js' => ['assets/js/apps/project/add.js'],
+			'ext' => '
+				<script>
+					const actionMode = "'.$action.'";
+					const idData = "'.$id.'";
+				</script>
+			'
 		];
 
 		$this->template($header, $body, $footer);

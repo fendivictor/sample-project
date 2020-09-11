@@ -146,3 +146,19 @@ $lang['sample-on-delivery'] = 'Sample On Delivery';
 $lang['sample-on-process'] = 'Sample On Process';
 $lang['sample-on-shipment'] = 'Sample On Shipment';
 $lang['sample-finish'] = 'Sample Finish';
+
+$lang['edit-btn'] = 'EDIT BUTTON';
+$lang['duplicate-btn'] = 'DUPLICATE BUTTON';
+
+$lang['edit-type'] = 'MENS/LADIES'; 
+$lang['edit-brand'] = 'BRAND'; 
+$lang['edit-kontrak'] = 'NO. KONTRAK'; 
+$lang['edit-item'] = 'ITEM'; 
+$lang['edit-style'] = 'STYLE'; 
+$lang['edit-nopattern'] = 'NO. PATTERN';
+$lang['edit-order'] = 'NEW/REPEAT'; 
+$lang['edit-size'] = 'SIZE'; 
+$lang['edit-qty'] = 'QTY'; 
+$lang['edit-price'] = 'PRICE'; 
+$lang['edit-duedate'] = 'DUE DATE'; 
+$lang['edit-tujuan'] = 'TUJUAN SAMPLE';

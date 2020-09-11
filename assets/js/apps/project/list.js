@@ -62,7 +62,7 @@ $(document).ready(function() {
 			{targets: 33, data: 'kirim_plan', width: 80, 'className': 'text-center'},
 			{targets: 34, data: 'kirim_actual', width: 80, 'className': 'text-center'},
 			{targets: 35, data: 'keterangan', width: 280, 'className': 'text-center'},
-			{targets: 36, data: 'tools', orderable: false, width: 80, 'className': 'text-center'}
+			{targets: 36, data: 'tools', orderable: false, width: 120, 'className': 'text-center'}
 		]
 	});
 
@@ -262,5 +262,17 @@ $(document).ready(function() {
                 	});
             }
         });
+	});
+
+	$(document).on('click', '.btn-edit', function(e) {
+		let id = $(this).data('id');
+
+		window.open(baseUrl + 'Project/add?action=edit&id=' + id, '_blank');
+	});
+
+	$(document).on('click', '.btn-duplicate', function(e) {
+		let id = $(this).data('id');
+
+		window.open(baseUrl + 'Project/add?action=duplicate&id=' + id, '_blank');
 	});
 });
