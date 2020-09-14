@@ -64,4 +64,9 @@ $(document).ready(function() {
 
 		window.open(baseUrl + 'Project/detail?id=' + id, '_blank');
 	});
+
+	$('#btn-download').click(function() {
+		let keyword	= $('#keyword').val();
+		window.open(baseUrl + 'Excel/sample?keyword=' + keyword + '&type=finish', '_blank');
+	});
 });

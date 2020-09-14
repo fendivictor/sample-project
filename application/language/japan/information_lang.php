@@ -131,6 +131,7 @@ $lang['confirm_save'] = '保存しますか';
 $lang['confirm_update'] = 'Are you sure want to update data ?';
 $lang['btn_yes'] = 'はい';
 $lang['btn_no'] = 'いいえ';
+$lang['btn_download'] = 'ダウンロード';
 
 $lang['progress_sample'] = 'Sample Progress';
 $lang['selesai'] = 'Done';

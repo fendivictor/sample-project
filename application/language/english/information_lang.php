@@ -131,6 +131,7 @@ $lang['confirm_save'] = 'Are you sure want to save data ?';
 $lang['confirm_update'] = 'Are you sure want to update data ?';
 $lang['btn_yes'] = 'Yes, i am sure';
 $lang['btn_no'] = 'No';
+$lang['btn_download'] = 'Download';
 
 $lang['progress_sample'] = 'Sample Progress';
 $lang['selesai'] = 'Done';

@@ -826,6 +826,50 @@ class Project_Model extends CI_Model {
 
 		return $jumlah;
 	}
+
+	public function excel_project($keyword = '', $type = '')
+	{
+		$condition = '';
+
+		$kolom_search = ['type', 'brand', 'kontrak', 'item', 'style', 'no_pattern', '`order`', 'size', 'qty', 'price', 'format_tec_sheet_plan', 'format_tec_sheet_actual', 'format_pattern_plan', 'format_pattern_actual', 'format_fabric_plan', 'format_fabric_actual', 'format_aksesories_plan', 'format_aksesories_actual', 'due_date', 'tujuan_sample', 'master_code', 'line', 'persiapan_plan', 'persiapan_actual', 'cutting_plan', 'cutting_actual', 'cad_plan', 'cad_actual', 'sewing_plan', 'sewing_actual', 'fg_plan', 'fg_actual', 'kirim_plan', 'kirim_actual', 'keterangan'];
+
+		$condition .= dt_searching($kolom_search, $keyword);
+
+		if ($type == 'ongoing') {
+			$condition .= " AND finish IS NULL ";
+		} else {
+			$condition .= " AND Finish IS NOT NULL ";
+		}
+
+		return $this->db->query("
+			SELECT * 
+			FROM (
+				SELECT *, DATE_FORMAT(a.tec_sheet_plan, '%d/%m/%Y') AS format_tec_sheet_plan,
+				DATE_FORMAT(a.tec_sheet_actual, '%d/%m/%Y') AS format_tec_sheet_actual,
+				DATE_FORMAT(a.pattern_plan, '%d/%m/%Y') AS format_pattern_plan,
+				DATE_FORMAT(a.pattern_actual, '%d/%m/%Y') AS format_pattern_actual,
+				DATE_FORMAT(a.fabric_plan, '%d/%m/%Y') AS format_fabric_plan,
+				DATE_FORMAT(a.fabric_actual, '%d/%m/%Y') AS format_fabric_actual,
+				DATE_FORMAT(a.aksesories_plan, '%d/%m/%Y') AS format_aksesories_plan,
+				DATE_FORMAT(a.aksesories_actual, '%d/%m/%Y') AS format_aksesories_actual,
+				DATE_FORMAT(a.due_date, '%d/%m/%Y') AS format_due_date,
+				DATE_FORMAT(a.persiapan_plan, '%d/%m/%Y') AS format_persiapan_plan,
+				DATE_FORMAT(a.persiapan_actual, '%d/%m/%Y') AS format_persiapan_actual,
+				DATE_FORMAT(a.cutting_plan, '%d/%m/%Y') AS format_cutting_plan,
+				DATE_FORMAT(a.cutting_actual, '%d/%m/%Y') AS format_cutting_actual,
+				DATE_FORMAT(a.cad_plan, '%d/%m/%Y') AS format_cad_plan,
+				DATE_FORMAT(a.cad_actual, '%d/%m/%Y') AS format_cad_actual,
+				DATE_FORMAT(a.sewing_plan, '%d/%m/%Y') AS format_sewing_plan,
+				DATE_FORMAT(a.sewing_actual, '%d/%m/%Y') AS format_sewing_actual,
+				DATE_FORMAT(a.fg_plan, '%d/%m/%Y') AS format_fg_plan,
+				DATE_FORMAT(a.fg_actual, '%d/%m/%Y') AS format_fg_actual,
+				DATE_FORMAT(a.kirim_plan, '%d/%m/%Y') AS format_kirim_plan,
+				DATE_FORMAT(a.kirim_actual, '%d/%m/%Y') AS format_kirim_actual
+				FROM project_h a 
+			) AS a 
+			WHERE 1 = 1
+			$condition ")->result();
+	}
 }
 
 /* End of file Project_Model.php */
