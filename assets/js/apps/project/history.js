@@ -2,7 +2,7 @@ $(document).ready(function() {
 	var table = $("#dt-table").DataTable({
 		serverSide: true,
 		processing: true,
-		scrollY: "500px",
+		scrollY: "50vh",
         scrollX: true,
         scrollCollapse: true,
         paging: false,
