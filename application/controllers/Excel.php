@@ -86,11 +86,11 @@ class Excel extends CI_Controller {
 
 		$sheet_header = [
 			['col' => 'A3', 'val' => lang('field_no'), 'style' => $bg_orange], 
-			['col' => 'B3', 'val' => lang('field_type'), 'style' => $bg_orange], 
-			['col' => 'C3', 'val' => lang('field_brand'), 'style' => $bg_orange], 
-			['col' => 'D3', 'val' => lang('field_kontrak'), 'style' => $bg_orange], 
-			['col' => 'E3', 'val' => lang('field_item'), 'style' => $bg_orange], 
-			['col' => 'F3', 'val' => lang('field_style'), 'style' => $bg_orange], 
+			['col' => 'B3', 'val' => lang('field_style'), 'style' => $bg_orange], 
+			['col' => 'C3', 'val' => lang('field_type'), 'style' => $bg_orange], 
+			['col' => 'D3', 'val' => lang('field_brand'), 'style' => $bg_orange], 
+			['col' => 'E3', 'val' => lang('field_kontrak'), 'style' => $bg_orange], 
+			['col' => 'F3', 'val' => lang('field_item'), 'style' => $bg_orange], 
 			['col' => 'G3', 'val' => lang('field_pattern'), 'style' => $bg_orange], 
 			['col' => 'I3', 'val' => lang('field_size'), 'style' => $bg_orange], 
 			['col' => 'J3', 'val' => lang('field_qty').' ('.lang('field_pce').')', 'style' => $bg_orange], 
@@ -99,18 +99,18 @@ class Excel extends CI_Controller {
 			['col' => 'N3', 'val' => lang('field_pattern'), 'style' => $bg_orange], 
 			['col' => 'P3', 'val' => lang('field_material_fabric'), 'style' => $bg_orange], 
 			['col' => 'R3', 'val' => lang('field_material_aksesories'), 'style' => $bg_orange], 
-			['col' => 'T3', 'val' => lang('field_due_date'), 'style' => $bg_orange], 
-			['col' => 'U3', 'val' => lang('field_tujuan_sample'), 'style' => $bg_orange], 
-			['col' => 'V3', 'val' => lang('master_code'), 'style' => $bg_green], 
-			['col' => 'W3', 'val' => lang('line'), 'style' => $bg_green], 
-			['col' => 'X3', 'val' => lang('field_persiapan_produksi'), 'style' => $bg_green], 
-			['col' => 'Z3', 'val' => lang('field_cad'), 'style' => $bg_green], 
-			['col' => 'AB3', 'val' => lang('field_cutting'), 'style' => $bg_green], 
-			['col' => 'AD3', 'val' => lang('field_sewing_inspect'), 'style' => $bg_green], 
-			['col' => 'AF3', 'val' => lang('field_masuk_finish_good'), 'style' => $bg_green], 
-			['col' => 'AH3', 'val' => lang('field_plan_kirim_sample'), 'style' => $bg_green], 
+			['col' => 'T3', 'val' => lang('field_tujuan_sample'), 'style' => $bg_orange], 
+			['col' => 'U3', 'val' => lang('field_due_date'), 'style' => $bg_orange], 
+			['col' => 'V3', 'val' => lang('field_plan_kirim_sample'), 'style' => $bg_green], 
+			['col' => 'X3', 'val' => lang('master_code'), 'style' => $bg_green], 
+			['col' => 'Y3', 'val' => lang('line'), 'style' => $bg_green], 
+			['col' => 'Z3', 'val' => lang('field_persiapan_produksi'), 'style' => $bg_green], 
+			['col' => 'AB3', 'val' => lang('field_cad'), 'style' => $bg_green], 
+			['col' => 'AD3', 'val' => lang('field_cutting'), 'style' => $bg_green], 
+			['col' => 'AF3', 'val' => lang('field_sewing_inspect'), 'style' => $bg_green], 
+			['col' => 'AH3', 'val' => lang('field_masuk_finish_good'), 'style' => $bg_green], 
 			['col' => 'AJ3', 'val' => lang('keterangan'), 'style' => $bg_green], 
-			['col' => 'B4', 'val' => '('.lang('field_jenis').')', 'style' => $bg_orange], 
+			['col' => 'C4', 'val' => '('.lang('field_jenis').')', 'style' => $bg_orange], 
 			['col' => 'G4', 'val' => lang('field_nopattern'), 'style' => $bg_orange], 
 			['col' => 'H4', 'val' => lang('field_order'), 'style' => $bg_orange], 
 			['col' => 'L4', 'val' => lang('field_plan_kirim'), 'style' => $bg_orange], 
@@ -121,8 +121,10 @@ class Excel extends CI_Controller {
 			['col' => 'Q4', 'val' => lang('field_tgl_kedatangan'), 'style' => $bg_green], 
 			['col' => 'R4', 'val' => lang('field_kirim_dhl'), 'style' => $bg_orange], 
 			['col' => 'S4', 'val' => lang('field_tgl_kedatangan'), 'style' => $bg_green], 
-			['col' => 'X4', 'val' => lang('field_plan_kirim'), 'style' => $bg_green], 
-			['col' => 'Y4', 'val' => lang('field_actual_kirim'), 'style' => $bg_green], 
+			['col' => 'AH4', 'val' => lang('field_plan_kirim'), 'style' => $bg_green], 
+			['col' => 'AI4', 'val' => lang('field_actual_kirim'), 'style' => $bg_green],
+			['col' => 'V4', 'val' => lang('field_plan_kirim'), 'style' => $bg_green], 
+			['col' => 'W4', 'val' => lang('field_actual_kirim'), 'style' => $bg_green], 
 			['col' => 'Z4', 'val' => lang('field_plan_kirim'), 'style' => $bg_green], 
 			['col' => 'AA4', 'val' => lang('field_actual_kirim'), 'style' => $bg_green],
 			['col' => 'AB4', 'val' => lang('field_plan_kirim'), 'style' => $bg_green], 
@@ -130,15 +132,13 @@ class Excel extends CI_Controller {
 			['col' => 'AD4', 'val' => lang('field_plan_kirim'), 'style' => $bg_green], 
 			['col' => 'AE4', 'val' => lang('field_actual_kirim'), 'style' => $bg_green], 
 			['col' => 'AF4', 'val' => lang('field_plan_kirim'), 'style' => $bg_green], 
-			['col' => 'AG4', 'val' => lang('field_actual_kirim'), 'style' => $bg_green], 
-			['col' => 'AH4', 'val' => lang('field_plan_kirim'), 'style' => $bg_green], 
-			['col' => 'AI4', 'val' => lang('field_actual_kirim'), 'style' => $bg_green]
+			['col' => 'AG4', 'val' => lang('field_actual_kirim'), 'style' => $bg_green] 
 		];
 
-		$merge = ['A3:A4', 'C3:C4', 'D3:D4', 'E3:E4', 'F3:F4', 'G3:H3', 'I3:I4', 'J3:J4', 'K3:K4', 'L3:M3', 'N3:O3', 'P3:Q3', 'R3:S3', 'T3:T4', 'U3:U4', 'V3:V4', 'W3:W4', 'X3:Y3', 'Z3:AA3', 'AB3:AC3', 'AD3:AE3', 'AF3:AG3', 'AH3:AI3', 'AJ3:AJ4', 'A1:AJ1'];
+		$merge = ['A3:A4', 'B3:B4', 'D3:D4', 'E3:E4', 'F3:F4', 'G3:H3', 'I3:I4', 'J3:J4', 'K3:K4', 'L3:M3', 'N3:O3', 'P3:Q3', 'R3:S3', 'T3:T4', 'U3:U4', 'V3:W3', 'X3:X4', 'Y3:Y4', 'Z3:AA3', 'AB3:AC3', 'AD3:AE3', 'AF3:AG3', 'AH3:AI3', 'AJ3:AJ4', 'A1:AJ1'];
 
 		$styling = [
-			['col' => 'A3:AJ4', 'style' => $text_middle, 'col' => 'A1:AJ1', 'style' => $text_middle]
+			['col' => 'A3:AJ4', 'style' => $text_middle, 'col' => 'A1:AJ1', 'style' => $text_middle, 'col' => 'A3:AJ4', 'style' => $text_middle]
 		];
 
 
@@ -168,11 +168,11 @@ class Excel extends CI_Controller {
 		if ($data) {
 			foreach ($data as $row) {
 				$sheet->setCellValue('A'.$baris, $row->id);
-				$sheet->setCellValue('B'.$baris, $row->type);
-				$sheet->setCellValue('C'.$baris, $row->brand);
-				$sheet->setCellValue('D'.$baris, $row->kontrak);
-				$sheet->setCellValue('E'.$baris, $row->item);
-				$sheet->setCellValue('F'.$baris, $row->style);
+				$sheet->setCellValue('B'.$baris, $row->style);
+				$sheet->setCellValue('C'.$baris, $row->type);
+				$sheet->setCellValue('D'.$baris, $row->brand);
+				$sheet->setCellValue('E'.$baris, $row->kontrak);
+				$sheet->setCellValue('F'.$baris, $row->item);
 				$sheet->setCellValue('G'.$baris, $row->no_pattern);
 				$sheet->setCellValue('H'.$baris, $row->order);
 				$sheet->setCellValue('I'.$baris, $row->size);
@@ -186,22 +186,22 @@ class Excel extends CI_Controller {
 				$sheet->setCellValue('Q'.$baris, $row->format_fabric_actual);
 				$sheet->setCellValue('R'.$baris, $row->format_aksesories_plan);
 				$sheet->setCellValue('S'.$baris, $row->format_aksesories_actual);
-				$sheet->setCellValue('T'.$baris, $row->format_due_date);
-				$sheet->setCellValue('U'.$baris, $row->tujuan_sample);
-				$sheet->setCellValue('V'.$baris, $row->master_code);
-				$sheet->setCellValue('W'.$baris, $row->line);
-				$sheet->setCellValue('X'.$baris, $row->format_persiapan_plan);
-				$sheet->setCellValue('Y'.$baris, $row->format_persiapan_actual);
-				$sheet->setCellValue('Z'.$baris, $row->format_cutting_plan);
-				$sheet->setCellValue('AA'.$baris, $row->format_cutting_actual);
-				$sheet->setCellValue('AB'.$baris, $row->format_cad_plan);
-				$sheet->setCellValue('AC'.$baris, $row->format_cad_actual);
-				$sheet->setCellValue('AD'.$baris, $row->format_sewing_plan);
-				$sheet->setCellValue('AE'.$baris, $row->format_sewing_actual);
-				$sheet->setCellValue('AF'.$baris, $row->format_fg_plan);
-				$sheet->setCellValue('AG'.$baris, $row->format_fg_actual);
-				$sheet->setCellValue('AH'.$baris, $row->format_kirim_plan);
-				$sheet->setCellValue('AI'.$baris, $row->format_kirim_actual);
+				$sheet->setCellValue('T'.$baris, $row->tujuan_sample);
+				$sheet->setCellValue('u'.$baris, $row->format_due_date);
+				$sheet->setCellValue('V'.$baris, $row->format_kirim_plan);
+				$sheet->setCellValue('W'.$baris, $row->format_kirim_actual);
+				$sheet->setCellValue('X'.$baris, $row->master_code);
+				$sheet->setCellValue('Y'.$baris, $row->line);
+				$sheet->setCellValue('Z'.$baris, $row->format_persiapan_plan);
+				$sheet->setCellValue('AA'.$baris, $row->format_persiapan_actual);
+				$sheet->setCellValue('AB'.$baris, $row->format_cutting_plan);
+				$sheet->setCellValue('AC'.$baris, $row->format_cutting_actual);
+				$sheet->setCellValue('AD'.$baris, $row->format_cad_plan);
+				$sheet->setCellValue('AE'.$baris, $row->format_cad_actual);
+				$sheet->setCellValue('AF'.$baris, $row->format_sewing_plan);
+				$sheet->setCellValue('AG'.$baris, $row->format_sewing_actual);
+				$sheet->setCellValue('AH'.$baris, $row->format_fg_plan);
+				$sheet->setCellValue('AI'.$baris, $row->format_fg_actual);
 				$sheet->setCellValue('AJ'.$baris, $row->keterangan);
 
 				$baris++;

@@ -50,8 +50,9 @@
 								<th colspan="2" class="table-header-style japan"><?= lang('field_pattern') ?></th>
 								<th colspan="2" class="table-header-style japan"><?= lang('field_material_fabric') ?></th>
 								<th colspan="2" class="table-header-style japan"><?= lang('field_material_aksesories') ?></th>
-								<th rowspan="2" class="table-header-style japan"><?= lang('field_due_date'); ?></th>
 								<th rowspan="2" class="table-header-style japan"><?= lang('field_tujuan_sample'); ?></th>
+								<th rowspan="2" class="table-header-style japan"><?= lang('field_due_date'); ?></th>
+								<th colspan="2" class="table-header-style indonesia"><?= lang('field_plan_kirim_sample'); ?></th>
 								<th rowspan="2" class="table-header-style indonesia"><?= lang('master_code') ?></th>
 								<th rowspan="2" class="table-header-style indonesia"><?= lang('line'); ?></th>
 								<th colspan="2" class="table-header-style indonesia"><?= lang('field_persiapan_produksi'); ?></th>
@@ -60,7 +61,6 @@
 								
 								<th colspan="2" class="table-header-style indonesia"><?= lang('field_sewing_inspect'); ?></th>
 								<th colspan="2" class="table-header-style indonesia"><?= lang('field_masuk_finish_good'); ?></th>
-								<th colspan="2" class="table-header-style indonesia"><?= lang('field_plan_kirim_sample'); ?></th>
 								<th rowspan="2" class="table-header-style indonesia"><?= lang('keterangan'); ?></th>
 								<th rowspan="2" class="table-header-style indonesia"><i class="fa fa-bars"></i></th>
 							</tr>
@@ -75,16 +75,16 @@
 								<th class="table-header-style indonesia"><?= lang('field_tgl_kedatangan'); ?></th>
 								<th class="table-header-style japan"><?= lang('field_kirim_dhl'); ?></th>
 								<th class="table-header-style indonesia"><?= lang('field_tgl_kedatangan'); ?></th>
-								<th class="table-header-style indonesia"><?= lang('field_finish_plan') ?></th>
-								<th class="table-header-style indonesia"><?= lang('field_actual_finish'); ?></th>
-								<th class="table-header-style indonesia"><?= lang('field_finish_plan') ?></th>
-								<th class="table-header-style indonesia"><?= lang('field_actual_finish'); ?></th>
-								<th class="table-header-style indonesia"><?= lang('field_finish_plan') ?></th>
-								<th class="table-header-style indonesia"><?= lang('field_actual_finish'); ?></th>
-								<th class="table-header-style indonesia"><?= lang('field_finish_plan') ?></th>
-								<th class="table-header-style indonesia"><?= lang('field_actual_finish'); ?></th>
 								<th class="table-header-style indonesia"><?= lang('field_plan'); ?></th>
 								<th class="table-header-style indonesia"><?= lang('field_actual'); ?></th>
+								<th class="table-header-style indonesia"><?= lang('field_finish_plan') ?></th>
+								<th class="table-header-style indonesia"><?= lang('field_actual_finish'); ?></th>
+								<th class="table-header-style indonesia"><?= lang('field_finish_plan') ?></th>
+								<th class="table-header-style indonesia"><?= lang('field_actual_finish'); ?></th>
+								<th class="table-header-style indonesia"><?= lang('field_finish_plan') ?></th>
+								<th class="table-header-style indonesia"><?= lang('field_actual_finish'); ?></th>
+								<th class="table-header-style indonesia"><?= lang('field_finish_plan') ?></th>
+								<th class="table-header-style indonesia"><?= lang('field_actual_finish'); ?></th>
 								<th class="table-header-style indonesia"><?= lang('field_plan'); ?></th>
 								<th class="table-header-style indonesia"><?= lang('field_actual'); ?></th>
 							</tr>
