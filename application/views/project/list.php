@@ -37,11 +37,11 @@
 						<thead>
 							<tr>
 								<th rowspan="2" class="table-header-style japan"><?= lang('field_no'); ?></th>
+								<th rowspan="2" class="table-header-style japan"><?= lang('field_style'); ?></th>
 								<th rowspan="2" class="table-header-style japan"><?= lang('field_type'); ?> <br /> (<?= lang('field_jenis') ?>)</th>
 								<th rowspan="2" class="table-header-style japan"><?= lang('field_brand'); ?></th>
 								<th rowspan="2" class="table-header-style japan"><?= lang('field_kontrak'); ?></th>
 								<th rowspan="2" class="table-header-style japan"><?= lang('field_item'); ?></th>
-								<th rowspan="2" class="table-header-style japan"><?= lang('field_style'); ?></th>
 								<th colspan="2" class="table-header-style japan"><?= lang('field_pattern'); ?></th>
 								<th rowspan="2" class="table-header-style japan"><?= lang('field_size'); ?></th>
 								<th rowspan="2" class="table-header-style japan"><?= lang('field_qty'); ?> (<?= lang('field_pce'); ?>)</th>

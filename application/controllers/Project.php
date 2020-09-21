@@ -89,7 +89,8 @@ class Project extends MY_Controller {
 			'2PP' => '2PP',
 			'3P' => '3P',
 			'PNT ONLY' => 'PNT ONLY',
-			'JK ONLY' => 'JK ONLY'
+			'JK ONLY' => 'JK ONLY',
+			'COAT' => 'COAT'
 		];
 
 		$opt_order = [

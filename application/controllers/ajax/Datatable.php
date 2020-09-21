@@ -32,6 +32,15 @@ class Datatable extends CI_Controller {
 		echo json_encode($data);
 	}
 
+	public function dt_project_non_serverside()
+	{
+		$keyword = $this->input->get('keyword', TRUE);
+
+		$data = $this->Project_Model->dt_project_non_serverside($keyword);
+
+		echo json_encode($data);
+	}
+
 	public function dt_delivery()
 	{
 		$bulan = $this->input->get('bulan', TRUE);

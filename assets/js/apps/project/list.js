@@ -6,20 +6,28 @@ $(document).ready(function() {
         rightColumns: 1
     }
 
+    if (lang == 'japan') {
+    	configFixColumn = {
+	        leftColumns: 2,
+	        rightColumns: 1
+	    }
+    }
+
     if (isMobile == 1) {
     	configFixColumn = {};
     }
 
 	var uploaded = [];
 	var table = $("#dt-table").DataTable({
-		serverSide: true,
 		processing: true,
-		scrollY: "500px",
+		scrollY: "50vh",
         scrollX: true,
         scrollCollapse: true,
         paging: false,
+        stateSave: true,
+        deferRender: true,
 		ajax: {
-			url: baseUrl + 'ajax/Datatable/dt_project',
+			url: baseUrl + 'ajax/Datatable/dt_project_non_serverside',
 			type: 'post'
 		},
 		fixedColumns: configFixColumn,
@@ -27,11 +35,11 @@ $(document).ready(function() {
 		order: [[0, 'asc']],
 		columnDefs: [
 			{targets: 0, data: 'no'},
-			{targets: 1, data: 'type', width: 100, 'className': 'text-center'},
-			{targets: 2, data: 'brand', width: 100, 'className': 'text-center'},
-			{targets: 3, data: 'kontrak', width: 100, 'className': 'text-center'},
-			{targets: 4, data: 'item', width: 100, 'className': 'text-center'},
-			{targets: 5, data: 'style', width: 120, 'className': 'text-center'},
+			{targets: 1, data: 'style', width: 120, 'className': 'text-center'},
+			{targets: 2, data: 'type', width: 100, 'className': 'text-center'},
+			{targets: 3, data: 'brand', width: 100, 'className': 'text-center'},
+			{targets: 4, data: 'kontrak', width: 100, 'className': 'text-center'},
+			{targets: 5, data: 'item', width: 100, 'className': 'text-center'},
 			{targets: 6, data: 'no_pattern', width: 150, 'className': 'text-center'},
 			{targets: 7, data: 'order', width: 100, 'className': 'text-center'},
 			{targets: 8, data: 'size', width: 200, 'className': 'text-center'},
@@ -68,7 +76,17 @@ $(document).ready(function() {
 
 	$("#btn-tampil").click(function() {
 		let keyword	= $('#keyword').val();
-		table.ajax.url(baseUrl + 'ajax/Datatable/dt_project?keyword=' + keyword).load();
+		table.ajax.url(baseUrl + 'ajax/Datatable/dt_project_non_serverside?keyword=' + keyword).load();
+	});
+
+	$("#keyword").keypress(function(e) {
+		var key = e.which;
+
+		if (key == 13) {
+			$("#btn-tampil").click();
+
+			return false;
+		}	
 	});
 
 	$(document).on('click', '.click-to-update', function() {

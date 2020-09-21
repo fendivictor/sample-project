@@ -22,6 +22,7 @@
         $.widget.bridge('uibutton', $.ui.button)
         const baseUrl = "<?= base_url(); ?>";
         const currentMonth = "<?= date('m') ?>";
+        const lang = "<?= $this->session->userdata('site_lang'); ?>";
     </script>
     <!-- Bootstrap 4 -->
     <script src="<?= base_url() ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
