@@ -125,6 +125,44 @@ class Datatable extends CI_Controller {
 
 		echo json_encode($data);
 	}
+
+	public function dt_summary()
+	{
+		$bulan = $this->input->get('bulan', TRUE);
+		$tahun = $this->input->get('tahun', TRUE);
+		$line = $this->input->get('line', TRUE);
+
+		if (strlen($bulan) == 1) {
+			$bulan = '0'.$bulan;
+		}
+
+		$data = $this->Project_Model->dt_summary($bulan, $tahun, $line);
+
+		$dt_table = [];
+		$response = [];
+
+		if ($data) {
+			foreach ($data as $row) {
+				$dt_table[] = [
+					'no' => $row->id,
+					'type' => $row->type,
+					'brand' => $row->brand,
+					'kontrak' => $row->kontrak,
+					'item' => $row->item,
+					'style' => $row->style, 
+					'line' => $row->line,
+					'qty' => $row->qty,
+					'due_date' => custom_date_format($row->due_date, 'Y-m-d', 'd/m/Y'),
+					'actual_finish' => custom_date_format($row->kirim_actual, 'Y-m-d', 'd/m/Y'),
+					'finish' => custom_date_format($row->finish, 'Y-m-d', 'd/m/Y')
+				];
+			}
+		}
+
+		$response['data'] = $dt_table;
+
+		echo json_encode($response);
+ 	}
 }
 
 /* End of file Datatable.php */

@@ -163,3 +163,5 @@ $lang['edit-qty'] = '数量';
 $lang['edit-price'] = '工賃';
 $lang['edit-duedate'] = '納期';
 $lang['edit-tujuan'] = 'サンプル目的'; 
+
+$lang['title_summary'] = 'Summary Sample';

@@ -163,3 +163,5 @@ $lang['edit-qty'] = 'QTY';
 $lang['edit-price'] = 'PRICE'; 
 $lang['edit-duedate'] = 'DUE DATE'; 
 $lang['edit-tujuan'] = 'TUJUAN SAMPLE';
+
+$lang['title_summary'] = 'Summary Sample';

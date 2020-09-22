@@ -1118,6 +1118,28 @@ class Project_Model extends CI_Model {
 
 		return $response;
 	}
+
+	public function dt_summary($bulan, $tahun, $line)
+	{	
+		$binding = [$tahun.'-'.$bulan];
+		$condition = "WHERE DATE_FORMAT(a.`due_date`, '%Y-%m') = ?";
+
+		if ($bulan == '') {
+			$binding = [$tahun];
+			$condition = "WHERE DATE_FORMAT(a.`due_date`, '%Y') = ?";
+		}
+
+		if ($line != '') {
+			$binding[] = '%'.$line.'%';
+			$condition .= " AND a.line LIKE ? ";
+		}
+
+		return $this->db->query("
+			SELECT a.`id`, a.`type`, a.`brand`, a.`item`, a.`kontrak`, a.`style`, 
+			a.`line`, a.`kirim_actual`, a.`finish`, a.qty, a.due_date
+			FROM project_h a
+			$condition ", $binding)->result();
+	}
 }
 
 /* End of file Project_Model.php */
