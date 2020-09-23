@@ -75,7 +75,7 @@
 								<th class="table-header-style indonesia"><?= lang('field_tgl_kedatangan'); ?></th>
 								<th class="table-header-style japan"><?= lang('field_kirim_dhl'); ?></th>
 								<th class="table-header-style indonesia"><?= lang('field_tgl_kedatangan'); ?></th>
-								<th class="table-header-style indonesia"><?= lang('field_plan'); ?></th>
+								<th class="table-header-style indonesia"><?= lang('field_plan_kirim_v2'); ?></th>
 								<th class="table-header-style indonesia"><?= lang('field_actual'); ?></th>
 								<th class="table-header-style indonesia"><?= lang('field_finish_plan') ?></th>
 								<th class="table-header-style indonesia"><?= lang('field_actual_finish'); ?></th>

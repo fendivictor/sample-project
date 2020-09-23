@@ -56,6 +56,7 @@ $lang['field_tgl_kedatangan'] = '到着日';
 $lang['field_finish_plan'] = '終了予定日';
 $lang['field_actual_finish'] = '終了';
 $lang['field_plan'] = '計画';
+$lang['field_plan_kirim_v2'] = '予定日';
 $lang['field_actual'] = '実績';
 $lang['field_status'] = 'STATUS';
 

@@ -56,6 +56,7 @@ $lang['field_tgl_kedatangan'] = 'TGL KEDATANGAN';
 $lang['field_finish_plan'] = 'FINISH PLAN';
 $lang['field_actual_finish'] = 'ACTUAL FINISH';
 $lang['field_plan'] = 'PLAN';
+$lang['field_plan_kirim_v2'] = 'PLAN';
 $lang['field_actual'] = 'ACTUAL';
 $lang['field_status'] = 'STATUS';
 
