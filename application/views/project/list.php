@@ -117,6 +117,9 @@
               		<div class="col-md-12">
               			<div class="form-group">
               				<label for=""><?= lang('form_attachment'); ?></label>
+
+              				<div id="filenya"></div>
+
               				<div class="attachment dropzone">
 							  	<div class="dz-message">
 							   		<h5><?= lang('form_drop'); ?></h5>

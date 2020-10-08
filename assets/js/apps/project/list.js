@@ -89,15 +89,8 @@ $(document).ready(function() {
 		}	
 	});
 
-	$(document).on('click', '.click-to-update', function() {
-		let action = $(this).data('action');
-		let id = $(this).data('id');
-
-		$("#modal-update").modal('show');
-
-		$(".datepicker").datepicker("destroy");
-
-		$.get(baseUrl + 'ajax/Ajax/get_action_details?action=' + action, function(data) {
+	async function loadForm(action, id) {
+		await $.get(baseUrl + 'ajax/Ajax/get_action_details?action=' + action, function(data) {
 			let response = JSON.parse(data);
 
 			$("#form").html(response.form_update);
@@ -110,6 +103,64 @@ $(document).ready(function() {
 				uiLibrary: 'bootstrap4'
 			});
 		});
+	}
+
+	async function loadHistory(action, id) {
+		let result = await $.get(baseUrl + 'ajax/Ajax/get_history_field?action=' + action + '&id_project=' + id, function(data) {
+			let response = JSON.parse(data);
+			$("#note").summernote('code', '');
+			if (response) {
+				$(`#${response.activity_type}`).val(response.value);
+				$("#note").summernote('code', response.note);
+			}
+		});
+
+		return result;
+	}
+
+	$(document).on('click', '.click-to-update', function() {
+		let action = $(this).data('action');
+		let id = $(this).data('id');
+
+		$("#modal-update").modal('show');
+
+		$(".datepicker").datepicker("destroy");
+
+		$("#filenya").html('');
+
+		blockModal();
+		loadForm(action, id)
+			.then(function(data) {
+				unBlockModal();
+				loadHistory(action, id)
+					.then(function(data) {
+						let response = JSON.parse(data);
+						$.get(`${baseUrl}ajax/Ajax/get_attachment?id_project_d=${response.id_project_d}`, function(data) {
+							let response = JSON.parse(data);
+							let element = '';
+
+							if (response) {
+								for (i in response) {
+									let lampiran = response[i].lampiran;
+									let file = lampiran.split('/');
+									file = file[1];
+
+									element += `<a href="${baseUrl}assets/uploads/attachment/${lampiran}" target="_blank"><i class="fa fa-link"></i> ${file} </a>`;
+								}
+							}
+
+							$("#filenya").html(element);
+						});
+					})
+					.catch(function(err) {
+						console.error('Terjadi kesalahan saat memuat data');
+						unBlockModal();
+					});
+			})
+			.catch(function(err) {
+				console.error('Terjadi kesalahan saat memuat data');
+				unBlockModal();
+			});
 	});
 
 	$(document).on('click', '#btn-save', function() {

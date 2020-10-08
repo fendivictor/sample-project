@@ -421,6 +421,25 @@ class Ajax extends CI_Controller {
 
 		echo json_encode($update);
 	}
+
+	public function get_history_field()
+	{
+		$id_project = $this->input->get('id_project', TRUE);
+		$action = $this->input->get('action', TRUE);
+
+		$data = $this->Project_Model->get_history_field($id_project, $action);
+
+		echo json_encode($data);
+	}
+
+	public function get_attachment()
+	{
+		$id_project_d = $this->input->get('id_project_d', TRUE);
+
+		$data = $this->Project_Model->get_attachment($id_project_d);
+
+		echo json_encode($data);
+	}
 }
 
 /* End of file Ajax.php */

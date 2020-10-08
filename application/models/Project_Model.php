@@ -1140,6 +1140,32 @@ class Project_Model extends CI_Model {
 			FROM project_h a
 			$condition ", $binding)->result();
 	}
+
+	public function get_history_field($id_project, $action)
+	{
+		return $this->db->query("
+			SELECT a.id, a.id_project, a.id_project_d, a.activity_type,
+			a.value, a.note, e.`data_type`
+			FROM (
+				SELECT *
+				FROM log_activity a
+				WHERE a.`id_project` = ?
+				AND a.`activity_type` = ?
+				ORDER BY a.`id` DESC
+				LIMIT 1
+			) AS a
+			INNER JOIN project_d b ON a.id_project_d = b.`id`
+			INNER JOIN project_h c ON c.`id` = b.`id_project`
+			INNER JOIN ms_action e ON e.`action_type` = a.activity_type ", [$id_project, $action])->row();
+	}
+
+	public function get_attachment($id_project_d)
+	{
+		return $this->db->query("
+			SELECT *
+			FROM project_attachment a
+			WHERE a.`id_project_d` = ? ", [$id_project_d])->result();
+	}
 }
 
 /* End of file Project_Model.php */
