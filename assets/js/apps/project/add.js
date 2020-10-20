@@ -50,6 +50,16 @@ $(document).ready(function() {
 		uiLibrary: 'bootstrap4'
 	});
 
+	$("#tec-actual-kirim").datepicker({
+		format: 'dd/mm/yyyy',
+		uiLibrary: 'bootstrap4'
+	});
+
+	$("#pattern-actual-kirim").datepicker({
+		format: 'dd/mm/yyyy',
+		uiLibrary: 'bootstrap4'
+	});
+
 	$("#fabric-plan-kirim").datepicker({
 		format: 'dd/mm/yyyy',
 		uiLibrary: 'bootstrap4'

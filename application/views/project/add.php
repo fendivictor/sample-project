@@ -83,44 +83,6 @@
 
 			<div class="col-md-12"></div>
 
-			<!-- <div class="col-md-3">
-				<div class="form-group">
-					<label for="">TEC. SHEET <small>(PLAN KIRIM)</small> <span class="text-danger">*</span></label>
-					<div class="input-group date" data-target-input="nearest">
-                  		<input type="text" class="form-control" id="tec-plan-kirim" name="tec-plan-kirim" required="required" autocomplete="off">
-                	</div>
-				</div>
-			</div>
-
-			<div class="col-md-3">
-				<div class="form-group">
-					<label for="">PATTERN <small>(PLAN KIRIM)</small> <span class="text-danger">*</span></label>
-					<div class="input-group date" data-target-input="nearest">
-                  		<input type="text" class="form-control" id="pattern-plan-kirim" name="pattern-plan-kirim" required="required" autocomplete="off">
-                	</div>
-				</div>
-			</div>
-
-			<div class="col-md-3">
-				<div class="form-group">
-					<label for="">MATERIAL (FABRIC) <small>(TGL KIRIM (DHL))</small> <span class="text-danger">*</span></label>
-					<div class="input-group date" data-target-input="nearest">
-                  		<input type="text" class="form-control" id="fabric-plan-kirim" name="fabric-plan-kirim" required="required" autocomplete="off">
-                	</div>
-				</div>
-			</div>
-
-			<div class="col-md-3">
-				<div class="form-group">
-					<label for="">MATERIAL (AKSESORIES) <small>(TGL KIRIM (DHL))</small> <span class="text-danger">*</span></label>
-					<div class="input-group date" data-target-input="nearest">
-                  		<input type="text" class="form-control" id="aksesories-plan-kirim" name="aksesories-plan-kirim" required="required" autocomplete="off">
-                	</div>
-				</div>
-			</div> -->
-
-			<div class="col-md-12"></div>
-
 			<div class="col-md-3">
 				<div class="form-group">
 					<label for=""><?= lang('field_due_date'); ?> <span class="text-danger">*</span></label>
@@ -136,6 +98,65 @@
 					<input type="text" class="form-control" id="tujuan-sample" name="tujuan-sample" required="required" autocomplete="off" value="<?= isset($data->tujuan_sample) ? $data->tujuan_sample : ''; ?>">
 				</div>
 			</div>
+
+
+			<div class="col-md-12"></div>
+
+			<?php if ($action == 'duplicate') { ?>
+			<div class="col-md-3">
+				<div class="form-group">
+					<label for=""><?= lang('field_tec_sheet') ?> <small>(<?= lang('field_plan_kirim') ?>)</small> <span class="text-danger">*</span></label>
+					<div class="input-group date" data-target-input="nearest">
+                  		<input type="text" class="form-control" id="tec-plan-kirim" name="tec-plan-kirim" required="required" autocomplete="off" value="<?= isset($data->tec_sheet_plan) ? custom_date_format($data->tec_sheet_plan, 'Y-m-d', 'd/m/Y') : ''; ?>">
+                	</div>
+				</div>
+			</div>
+
+			<div class="col-md-3">
+				<div class="form-group">
+					<label for=""><?= lang('field_tec_sheet') ?> <small>(<?= lang('field_actual_kirim') ?>)</small> <span class="text-danger">*</span></label>
+					<div class="input-group date" data-target-input="nearest">
+                  		<input type="text" class="form-control" id="tec-actual-kirim" name="tec-actual-kirim" required="required" autocomplete="off" value="<?= isset($data->tec_sheet_actual) ? custom_date_format($data->tec_sheet_actual, 'Y-m-d', 'd/m/Y') : ''; ?>">
+                	</div>
+				</div>
+			</div>
+
+			<div class="col-md-3">
+				<div class="form-group">
+					<label for=""><?= lang('field_pattern') ?> <small>(<?= lang('field_plan_kirim') ?>)</small> <span class="text-danger">*</span></label>
+					<div class="input-group date" data-target-input="nearest">
+                  		<input type="text" class="form-control" id="pattern-plan-kirim" name="pattern-plan-kirim" required="required" autocomplete="off" value="<?= isset($data->pattern_plan) ? custom_date_format($data->pattern_plan, 'Y-m-d', 'd/m/Y') : ''; ?>">
+                	</div>
+				</div>
+			</div>
+
+			<div class="col-md-3">
+				<div class="form-group">
+					<label for=""><?= lang('field_pattern') ?> <small>(<?= lang('field_actual_kirim') ?>)</small> <span class="text-danger">*</span></label>
+					<div class="input-group date" data-target-input="nearest">
+                  		<input type="text" class="form-control" id="pattern-actual-kirim" name="pattern-actual-kirim" required="required" autocomplete="off" value="<?= isset($data->pattern_actual) ? custom_date_format($data->pattern_actual, 'Y-m-d', 'd/m/Y') : ''; ?>">
+                	</div>
+				</div>
+			</div>
+
+			<div class="col-md-3">
+				<div class="form-group">
+					<label for=""><?= lang('field_material_fabric') ?> <small>(<?= lang('field_kirim_dhl') ?>)</small> <span class="text-danger">*</span></label>
+					<div class="input-group date" data-target-input="nearest">
+                  		<input type="text" class="form-control" id="fabric-plan-kirim" name="fabric-plan-kirim" required="required" autocomplete="off" value="<?= isset($data->fabric_plan) ? custom_date_format($data->fabric_plan, 'Y-m-d', 'd/m/Y') : ''; ?>">
+                	</div>
+				</div>
+			</div>
+
+			<div class="col-md-3">
+				<div class="form-group">
+					<label for=""><?= lang('field_material_aksesories') ?> <small>(<?= lang('field_kirim_dhl') ?>)</small> <span class="text-danger">*</span></label>
+					<div class="input-group date" data-target-input="nearest">
+                  		<input type="text" class="form-control" id="aksesories-plan-kirim" name="aksesories-plan-kirim" required="required" autocomplete="off" value="<?= isset($data->aksesories_plan) ? custom_date_format($data->aksesories_plan, 'Y-m-d', 'd/m/Y') : ''; ?>">
+                	</div>
+				</div>
+			</div>
+			<?php } ?>
 
 			<div class="col-md-12">
 				<button class="btn btn-primary" name="save-btn">

@@ -120,14 +120,17 @@ class Ajax extends CI_Controller {
 		$size = $this->input->post('size', TRUE);
 		$qty = $this->input->post('qty', TRUE);
 		$price = $this->input->post('price', TRUE);
-		// $tec_plan_kirim = $this->input->post('tec-plan-kirim', TRUE);
-		// $pattern_plan_kirim = $this->input->post('pattern-plan-kirim', TRUE);
-		// $fabric_plan_kirim = $this->input->post('fabric-plan-kirim', TRUE);
-		// $aksesories_plan_kirim = $this->input->post('aksesories-plan-kirim', TRUE);
 		$due_date = $this->input->post('due-date', TRUE);
 		$tujuan_sample = $this->input->post('tujuan-sample', TRUE);
 		$username = $this->session->userdata('username');
 		$now = $this->Main_Model->get_time('%Y-%m-%d %H:%i:%s');
+
+		$tec_plan_kirim = $this->input->post('tec-plan-kirim', TRUE);
+		$tec_actual_kirim = $this->input->post('tec-actual-kirim', TRUE);
+		$pattern_plan_kirim = $this->input->post('pattern-plan-kirim', TRUE);
+		$pattern_actual_kirim = $this->input->post('pattern-actual-kirim', TRUE);
+		$fabric_plan_kirim = $this->input->post('fabric-plan-kirim', TRUE);
+		$aksesories_plan_kirim = $this->input->post('aksesories-plan-kirim', TRUE);
 
 		$this->form_validation->set_rules('type', 'Type', 'required');
 		$this->form_validation->set_rules('brand', 'Brand', 'required');
@@ -152,6 +155,13 @@ class Ajax extends CI_Controller {
 			// $fabric_plan_kirim = custom_date_format($fabric_plan_kirim, 'd/m/Y', 'Y-m-d');
 			// $aksesories_plan_kirim = custom_date_format($aksesories_plan_kirim, 'd/m/Y', 'Y-m-d');
 			$due_date = custom_date_format($due_date, 'd/m/Y', 'Y-m-d');
+			
+			$tec_plan_kirim = custom_date_format($tec_plan_kirim, 'd/m/Y', 'Y-m-d');
+			$tec_actual_kirim = custom_date_format($tec_actual_kirim, 'd/m/Y', 'Y-m-d');
+			$pattern_plan_kirim = custom_date_format($pattern_plan_kirim, 'd/m/Y', 'Y-m-d');
+			$pattern_actual_kirim = custom_date_format($pattern_actual_kirim, 'd/m/Y', 'Y-m-d');
+			$fabric_plan_kirim = custom_date_format($fabric_plan_kirim, 'd/m/Y', 'Y-m-d');
+			$aksesories_plan_kirim = custom_date_format($aksesories_plan_kirim, 'd/m/Y', 'Y-m-d');
 
 			$data = [
 				'type' => $type,
@@ -173,6 +183,13 @@ class Ajax extends CI_Controller {
 				'insert_at' => $now,
 				'user_insert' => $username
 			];
+
+			if ($tec_plan_kirim != '') $data['tec_sheet_plan'] = $tec_plan_kirim;
+			if ($tec_actual_kirim != '') $data['tec_sheet_actual'] = $tec_actual_kirim;
+			if ($pattern_plan_kirim != '') $data['pattern_plan'] = $pattern_plan_kirim;
+			if ($pattern_actual_kirim != '') $data['pattern_actual'] = $pattern_actual_kirim;
+			if ($fabric_plan_kirim != '') $data['fabric_plan'] = $fabric_plan_kirim;
+			if ($aksesories_plan_kirim != '') $data['aksesories_plan'] = $aksesories_plan_kirim;
 
 			$simpan = $this->Project_Model->add_project($data);
 

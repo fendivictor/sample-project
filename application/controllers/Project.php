@@ -107,7 +107,8 @@ class Project extends MY_Controller {
 			'opt_jenis' => $opt_jenis,
 			'opt_item' => $opt_item,
 			'opt_order' => $opt_order,
-			'id' => ($action == 'edit') ? $id : ''
+			'id' => ($action == 'edit') ? $id : '',
+			'action' => $action
 		];
 
 		$footer = [
