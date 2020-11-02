@@ -45,7 +45,8 @@ $(document).ready(function() {
 			{targets: 3, data: 'kontrak'},
 			{targets: 4, data: 'item'},
 			{targets: 5, data: 'style'},
-			{targets: 6, data: 'status'}
+			{targets: 6, data: 'status'},
+			{targets: 7, data: 'kirim_plan'}
 		],
 		default: [
 			{targets: 0, data: 'no'},

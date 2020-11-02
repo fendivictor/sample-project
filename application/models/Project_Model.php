@@ -687,7 +687,7 @@ class Project_Model extends CI_Model {
 
 		} else if ($type == 'sample-on-process') {
 
-			$sql = " 	SELECT a.id, a.type, a.brand, a.kontrak, a.item, a.style,
+			$sql = " 	SELECT a.id, a.type, a.brand, a.kontrak, a.item, a.style, a.kirim_plan, DATE_FORMAT(a.kirim_plan, '%d/%m/%Y') AS kirim_plan_format,
 						CASE WHEN a.fabric_actual <> '' AND a.aksesories_actual <> '' AND a.persiapan_actual IS NULL AND a.cad_actual IS NULL AND a.cutting_actual IS NULL AND a.sewing_actual IS NULL AND a.fg_actual IS NULL AND a.kirim_actual IS NULL
 							THEN 'field_persiapan_produksi'
 						WHEN a.fabric_actual <> '' AND a.aksesories_actual <> '' AND a.persiapan_actual <> '' AND a.cad_actual IS NULL AND a.cutting_actual IS NULL AND a.sewing_actual IS NULL AND a.fg_actual IS NULL AND a.kirim_actual IS NULL
@@ -710,8 +710,8 @@ class Project_Model extends CI_Model {
 						AND a.`kirim_actual` IS NULL
 						AND a.`finish` IS NULL ";
 
-			$kolom_search = ['id', 'type', 'brand', 'kontrak', 'item', 'style', 'status'];
-			$kolom_order = ['id', 'type', 'brand', 'kontrak', 'item', 'style', 'status'];
+			$kolom_search = ['id', 'type', 'brand', 'kontrak', 'item', 'style', 'status', 'kirim_plan_format'];
+			$kolom_order = ['id', 'type', 'brand', 'kontrak', 'item', 'style', 'status', 'kirim_plan'];
 
 		} else if ($type == 'sample-on-shipment') {
 
@@ -766,6 +766,7 @@ class Project_Model extends CI_Model {
 
 				if ($type == 'sample-on-process') {
 					$data[$row]['status'] = '<label>'.lang($val->status).'</label>';
+					$data[$row]['kirim_plan'] = $val->kirim_plan_format;
 				}
 			}
 		}

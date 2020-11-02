@@ -141,6 +141,7 @@
                                         <th align="center"><?= lang('field_item'); ?></th>
                                         <th align="center"><?= lang('field_style'); ?></th>
                                         <th align="center"><?= lang('field_status'); ?></th>
+                                        <th align="center"><?= lang('field_plan_kirim_sample'); ?></th>
                                     </tr>
                                 </thead>
                             </table>
