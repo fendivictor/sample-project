@@ -63,11 +63,12 @@ $(document).ready(function() {
 			{targets: 3, data: 'kontrak'},
 			{targets: 4, data: 'item'},
 			{targets: 5, data: 'style'},
-			{targets: 6, data: 'qty', className: 'text-right'},
-			{targets: 7, data: 'line'},
-			{targets: 8, data: 'due_date'},
-			{targets: 9, data: 'actual_finish'},
-			{targets: 10, data: 'finish'}
+			{targets: 6, data: 'size'},
+			{targets: 7, data: 'qty', className: 'text-right'},
+			{targets: 8, data: 'line'},
+			{targets: 9, data: 'due_date'},
+			{targets: 10, data: 'actual_finish'},
+			{targets: 11, data: 'finish'}
 		]
 	}	
 
@@ -166,7 +167,7 @@ $(document).ready(function() {
 
             // computing column Total of the complete result 
             var Total = api
-                .column( 6 )
+                .column( 7 )
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
@@ -175,7 +176,7 @@ $(document).ready(function() {
             var Total = Total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                     
             // Update footer by showing the total with the reference of the column index 
-            $( api.column( 6 ).footer() ).html(Total);
+            $( api.column( 7 ).footer() ).html(Total);
         },
         buttons: [{
 	        extend: "excel",

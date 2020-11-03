@@ -252,6 +252,7 @@
                                                 <th align="center"><?= lang('field_kontrak'); ?></th>
                                                 <th align="center"><?= lang('field_item'); ?></th>
                                                 <th align="center"><?= lang('field_style'); ?></th>
+                                                <th align="center"><?= lang('field_size'); ?></th>
                                                 <th align="center"><?= lang('field_qty'); ?></th>
                                                 <th align="center"><?= lang('line'); ?></th>
                                                 <th align="center"><?= lang('field_due_date'); ?></th>
@@ -262,6 +263,7 @@
                                         <tfoot>
                                             <tr>
                                                 <th>Total</th>
+                                                <th></th>
                                                 <th></th>
                                                 <th></th>
                                                 <th></th>

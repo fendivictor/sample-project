@@ -152,6 +152,7 @@ class Datatable extends CI_Controller {
 					'style' => $row->style, 
 					'line' => $row->line,
 					'qty' => $row->qty,
+					'size' => $row->size,
 					'due_date' => custom_date_format($row->due_date, 'Y-m-d', 'd/m/Y'),
 					'actual_finish' => custom_date_format($row->kirim_actual, 'Y-m-d', 'd/m/Y'),
 					'finish' => custom_date_format($row->finish, 'Y-m-d', 'd/m/Y')
