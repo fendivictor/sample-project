@@ -67,8 +67,9 @@ $(document).ready(function() {
 			{targets: 7, data: 'qty', className: 'text-right'},
 			{targets: 8, data: 'line'},
 			{targets: 9, data: 'due_date'},
-			{targets: 10, data: 'actual_finish'},
-			{targets: 11, data: 'finish'}
+			{targets: 10, data: 'plan_kirim'},
+			{targets: 11, data: 'actual_finish'},
+			{targets: 12, data: 'finish'}
 		]
 	}	
 

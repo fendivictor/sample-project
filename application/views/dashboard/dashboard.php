@@ -256,6 +256,7 @@
                                                 <th align="center"><?= lang('field_qty'); ?></th>
                                                 <th align="center"><?= lang('line'); ?></th>
                                                 <th align="center"><?= lang('field_due_date'); ?></th>
+                                                <th align="center"><?= lang('field_plan_kirim'); ?></th>
                                                 <th align="center"><?= lang('field_actual_finish'); ?></th>
                                                 <th align="center"><?= lang('finish'); ?></th>
                                             </tr>
@@ -270,6 +271,7 @@
                                                 <th></th>
                                                 <th></th>
                                                 <th style="background-color: yellow;"></th>
+                                                <th></th>
                                                 <th></th>
                                                 <th></th>
                                                 <th></th>

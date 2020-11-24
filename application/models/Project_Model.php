@@ -1137,7 +1137,7 @@ class Project_Model extends CI_Model {
 
 		return $this->db->query("
 			SELECT a.`id`, a.`type`, a.`brand`, a.`item`, a.`kontrak`, a.`style`, 
-			a.`line`, a.`kirim_actual`, a.`finish`, a.qty, a.due_date, a.size
+			a.`line`, a.`kirim_actual`, a.`finish`, a.qty, a.due_date, a.size, a.kirim_plan
 			FROM project_h a
 			$condition ", $binding)->result();
 	}
