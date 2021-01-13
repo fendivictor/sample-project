@@ -114,9 +114,9 @@
 
 			<div class="col-md-3">
 				<div class="form-group">
-					<label for=""><?= lang('field_tec_sheet') ?> <small>(<?= lang('field_actual_kirim') ?>)</small> <span class="text-danger">*</span></label>
+					<label for=""><?= lang('field_tec_sheet') ?> <small>(<?= lang('field_actual_kirim') ?>)</small></label>
 					<div class="input-group date" data-target-input="nearest">
-                  		<input type="text" class="form-control" id="tec-actual-kirim" name="tec-actual-kirim" required="required" autocomplete="off" value="<?= isset($data->tec_sheet_actual) ? custom_date_format($data->tec_sheet_actual, 'Y-m-d', 'd/m/Y') : ''; ?>">
+                  		<input type="text" class="form-control" id="tec-actual-kirim" name="tec-actual-kirim" autocomplete="off" value="<?= isset($data->tec_sheet_actual) ? custom_date_format($data->tec_sheet_actual, 'Y-m-d', 'd/m/Y') : ''; ?>">
                 	</div>
 				</div>
 			</div>
@@ -132,9 +132,9 @@
 
 			<div class="col-md-3">
 				<div class="form-group">
-					<label for=""><?= lang('field_pattern') ?> <small>(<?= lang('field_actual_kirim') ?>)</small> <span class="text-danger">*</span></label>
+					<label for=""><?= lang('field_pattern') ?> <small>(<?= lang('field_actual_kirim') ?>)</small></label>
 					<div class="input-group date" data-target-input="nearest">
-                  		<input type="text" class="form-control" id="pattern-actual-kirim" name="pattern-actual-kirim" required="required" autocomplete="off" value="<?= isset($data->pattern_actual) ? custom_date_format($data->pattern_actual, 'Y-m-d', 'd/m/Y') : ''; ?>">
+                  		<input type="text" class="form-control" id="pattern-actual-kirim" name="pattern-actual-kirim" autocomplete="off" value="<?= isset($data->pattern_actual) ? custom_date_format($data->pattern_actual, 'Y-m-d', 'd/m/Y') : ''; ?>">
                 	</div>
 				</div>
 			</div>
